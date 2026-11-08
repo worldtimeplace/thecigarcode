@@ -752,6 +752,20 @@ body:not(.en) #rsvpv .en-only,body.en #rsvpv .ja-only{display:none!important}
 #rsvpv #rvPeople li em{font-style:normal;font-size:11px;color:#9a9a9a}
 #rsvpv #rvPeople li.rv-none{color:#8a8a8a;font-size:12px}
 #rsvpv .rv-err{min-height:1.2em;font-family:"Zen Old Mincho",serif}
+
+.hero .nx-venue{display:inline-block;margin-top:14px;color:#fff;font:600 10.5px "Inter Tight","Zen Old Mincho",sans-serif;letter-spacing:.2em;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:4px}
+.lounge .lg-map,.lounge .lg-media{grid-column:2}.lounge .lg-map{justify-self:start;display:inline-block;margin-top:12px;font:600 10px "Inter Tight",Arial,sans-serif;letter-spacing:.22em;color:#0a0a0a;text-decoration:none;border:1px solid #0a0a0a;padding:8px 12px}
+.lounge .lg-media{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.lounge .lg-media img,.lounge .lg-media iframe{width:100%;aspect-ratio:4/3;object-fit:cover;border:0;display:block;background:#e9e9e9}
+.lounge .lg-media iframe{filter:grayscale(1) contrast(1.05)}
+#lounge-capitol{scroll-margin-top:110px}
+@media (max-width:860px){.lounge .lg-media{grid-template-columns:1fr}}
+
+#lounges .lounge .lg-media{grid-column:1 / -1!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;margin:16px 0 0 52px!important;max-width:760px}
+#lounges .lounge .lg-media img,#lounges .lounge .lg-media iframe{width:100%!important;height:auto!important;aspect-ratio:4/3!important;object-fit:cover!important;border:0!important;display:block!important;max-width:none!important}
+#lounges .lounge .lg-map{grid-column:2!important;justify-self:start!important;display:inline-block!important;margin-top:12px!important;font:600 10px "Inter Tight",Arial,sans-serif!important;letter-spacing:.22em!important;color:#0a0a0a!important;text-decoration:none!important;border:1px solid #0a0a0a!important;padding:8px 12px!important;background:none!important}
+#lounges .lounges{grid-template-columns:1fr!important}
+@media (max-width:860px){#lounges .lounge .lg-media{grid-template-columns:1fr!important;margin-left:0!important}}
 </style>
 </head>
 <body class="locked">
@@ -772,6 +786,7 @@ body:not(.en) #rsvpv .en-only,body.en #rsvpv .ja-only{display:none!important}
       <p class="nx-d ja-only">2026年11月18日（水）　20:00–23:00</p><p class="nx-d en-only">Wednesday, 18 November 2026 · 20:00–23:00</p>
       <p class="nx-v ja-only">キャピトル東急 4F　ザ・キャピトルバー（予定）</p><p class="nx-v en-only">The Capitol Bar, 4F, The Capitol Hotel Tokyu (planned)</p>
       <p class="nx-n ja-only">ご参加人数により場所が変更になることがあります。</p><p class="nx-n en-only">The venue may change depending on numbers.</p>
+      <a class="nx-venue" href="#lounge-capitol"><span class="ja-only">会場のご案内（写真・地図）</span><span class="en-only">Venue details · photos &amp; map</span> →</a>
     </div>
     <div class="nx-row"><a class="btn" href="#rsvp" id="rsvpOpen"><span class="ja-only">ご出欠の回答</span><span class="en-only">RSVP</span></a>
     <a class="nx-count" href="#rsvp"><span class="ja-only">現在の参加予定</span><span class="en-only">Attending so far</span><b><span id="rvCount">—</span><small class="ja-only">名</small></b></a></div>
@@ -1080,22 +1095,38 @@ body:not(.en) #rsvpv .en-only,body.en #rsvpv .ja-only{display:none!important}
     <h2 class="ja-only">都内のシガーバー・ラウンジ</h2>
     <h2 class="en-only">Where to smoke in Tokyo</h2>
     <div class="lounges">
-      <div class="lounge"><div class="i">01</div><div><b>The Capitol Bar<span class="tag">OUR VENUE</span></b><div class="area ja-only">ザ・キャピトルホテル 東急 · 永田町</div><div class="area en-only">The Capitol Hotel Tokyu · Nagatacho</div></div>
-        <p class="ja-only">THE CIGAR CODE 第1回の会場となったホテルのバー。</p><p class="en-only">The hotel bar where our first gathering was held.</p></div>
+      <div class="lounge" id="lounge-capitol"><div class="i">01</div><div><b>The Capitol Bar<span class="tag">OUR VENUE</span></b><div class="area ja-only">ザ・キャピトルホテル 東急 · 永田町</div><div class="area en-only">The Capitol Hotel Tokyu · Nagatacho</div></div>
+        <p class="ja-only">THE CIGAR CODE 第1回の会場となったホテルのバー。</p><p class="en-only">The hotel bar where our first gathering was held.</p>
+        <div class="lg-media"><img src="media/light_s.jpg" alt="" loading="lazy"><iframe src="https://www.google.com/maps?q=%E3%82%B6%E3%83%BB%E3%82%AD%E3%83%A3%E3%83%94%E3%83%88%E3%83%AB%E3%83%9B%E3%83%86%E3%83%AB%20%E6%9D%B1%E6%80%A5%20%E3%82%B6%E3%83%BB%E3%82%AD%E3%83%A3%E3%83%94%E3%83%88%E3%83%AB%20%E3%83%90%E3%83%BC&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="map"></iframe></div><a class="lg-map" href="https://www.google.com/maps/search/?api=1&query=%E3%82%B6%E3%83%BB%E3%82%AD%E3%83%A3%E3%83%94%E3%83%88%E3%83%AB%E3%83%9B%E3%83%86%E3%83%AB%20%E6%9D%B1%E6%80%A5%20%E3%82%B6%E3%83%BB%E3%82%AD%E3%83%A3%E3%83%94%E3%83%88%E3%83%AB%20%E3%83%90%E3%83%BC" target="_blank" rel="noopener">GOOGLE MAP ↗</a></div>
+
       <div class="lounge"><div class="i">02</div><div><b>Le Connaisseur Ginza</b><div class="area ja-only">ル・コネスール 銀座本店 · 銀座8丁目</div><div class="area en-only">Ginza 8-chome</div></div>
-        <p class="ja-only">並木通りに面した老舗のシガーバー。日中から営業しています。</p><p class="en-only">A long-standing lounge on Namiki-dori, open from the afternoon.</p></div>
+        <p class="ja-only">並木通りに面した老舗のシガーバー。日中から営業しています。</p><p class="en-only">A long-standing lounge on Namiki-dori, open from the afternoon.</p>
+        <a class="lg-map" href="https://www.google.com/maps/search/?api=1&query=%E3%83%AB%E3%83%BB%E3%82%B3%E3%83%8D%E3%82%B9%E3%83%BC%E3%83%AB%20%E9%8A%80%E5%BA%A7%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">GOOGLE MAP ↗</a></div>
+
       <div class="lounge"><div class="i">03</div><div><b>Le Connaisseur Roppongi</b><div class="area ja-only">ル・コネスール 六本木店 · 六本木</div><div class="area en-only">Roppongi</div></div>
-        <p class="ja-only">1998年開業。落ち着いた空間で、ラム酒とのペアリングにも定評があります。</p><p class="en-only">Since 1998. A hideaway lounge, best with Caribbean rum.</p></div>
+        <p class="ja-only">1998年開業。落ち着いた空間で、ラム酒とのペアリングにも定評があります。</p><p class="en-only">Since 1998. A hideaway lounge, best with Caribbean rum.</p>
+        <a class="lg-map" href="https://www.google.com/maps/search/?api=1&query=%E3%83%AB%E3%83%BB%E3%82%B3%E3%83%8D%E3%82%B9%E3%83%BC%E3%83%AB%20%E5%85%AD%E6%9C%AC%E6%9C%A8%E5%BA%97" target="_blank" rel="noopener">GOOGLE MAP ↗</a></div>
+
       <div class="lounge"><div class="i">04</div><div><b>Davidoff Ginza</b><div class="area ja-only">ダビドフ 銀座 · 銀座</div><div class="area en-only">Ginza</div></div>
-        <p class="ja-only">ウォークイン・ヒュミドールとラウンジを備えた、ダビドフの旗艦店。</p><p class="en-only">Davidoff's flagship store, with a walk-in humidor and lounge.</p></div>
+        <p class="ja-only">ウォークイン・ヒュミドールとラウンジを備えた、ダビドフの旗艦店。</p><p class="en-only">Davidoff's flagship store, with a walk-in humidor and lounge.</p>
+        <a class="lg-map" href="https://www.google.com/maps/search/?api=1&query=%E3%83%80%E3%83%93%E3%83%89%E3%83%95%20%E9%8A%80%E5%BA%A7" target="_blank" rel="noopener">GOOGLE MAP ↗</a></div>
+
       <div class="lounge"><div class="i">05</div><div><b>Cohiba Atmosphere</b><div class="area ja-only">コイーバ・アトモスフィア · 西麻布</div><div class="area en-only">Nishi-Azabu</div></div>
-        <p class="ja-only">テラス席を備えた西麻布のシガーバー。</p><p class="en-only">A cigar bar with terrace seating in Nishi-Azabu.</p></div>
+        <p class="ja-only">テラス席を備えた西麻布のシガーバー。</p><p class="en-only">A cigar bar with terrace seating in Nishi-Azabu.</p>
+        <a class="lg-map" href="https://www.google.com/maps/search/?api=1&query=%E3%82%B3%E3%82%A4%E3%83%BC%E3%83%90%20%E3%82%A2%E3%83%88%E3%83%A2%E3%82%B9%E3%83%95%E3%82%A3%E3%82%A2%20%E8%A5%BF%E9%BA%BB%E5%B8%83" target="_blank" rel="noopener">GOOGLE MAP ↗</a></div>
+
       <div class="lounge"><div class="i">06</div><div><b>R261 Cigar &amp; Rock</b><div class="area ja-only">セルリアンタワー東急ホテル 2F · 渋谷</div><div class="area en-only">Cerulean Tower Tokyu Hotel 2F · Shibuya</div></div>
-        <p class="ja-only">セルリアンタワー東急ホテル内のシガーバー。シガーとお酒のセミナーの開催実績もあります。</p><p class="en-only">A hotel cigar bar that has hosted cigar and spirits seminars.</p></div>
+        <p class="ja-only">セルリアンタワー東急ホテル内のシガーバー。シガーとお酒のセミナーの開催実績もあります。</p><p class="en-only">A hotel cigar bar that has hosted cigar and spirits seminars.</p>
+        <a class="lg-map" href="https://www.google.com/maps/search/?api=1&query=R261%20Cigar%20%26%20Rock%20%E3%82%BB%E3%83%AB%E3%83%AA%E3%82%A2%E3%83%B3%E3%82%BF%E3%83%AF%E3%83%BC%E6%9D%B1%E6%80%A5%E3%83%9B%E3%83%86%E3%83%AB" target="_blank" rel="noopener">GOOGLE MAP ↗</a></div>
+
       <div class="lounge"><div class="i">07</div><div><b>Cigar Club</b><div class="area ja-only">ウェスティンホテル東京 · 恵比寿</div><div class="area en-only">The Westin Tokyo · Ebisu</div></div>
-        <p class="ja-only">ウェスティンホテル東京内の、ヨーロピアン調のシガーバー。</p><p class="en-only">A European-style cigar bar within The Westin Tokyo.</p></div>
+        <p class="ja-only">ウェスティンホテル東京内の、ヨーロピアン調のシガーバー。</p><p class="en-only">A European-style cigar bar within The Westin Tokyo.</p>
+        <a class="lg-map" href="https://www.google.com/maps/search/?api=1&query=%E3%82%A6%E3%82%A7%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%83%9B%E3%83%86%E3%83%AB%E6%9D%B1%E4%BA%AC%20%E3%82%B7%E3%82%AC%E3%83%BC%E3%82%AF%E3%83%A9%E3%83%96" target="_blank" rel="noopener">GOOGLE MAP ↗</a></div>
+
       <div class="lounge"><div class="i">08</div><div><b>RANSEN Hanare</b><div class="area ja-only">RANSENはなれ · ホテルニューオータニ（紀尾井町）</div><div class="area en-only">Hotel New Otani · Kioicho</div></div>
-        <p class="ja-only">全席喫煙可のバー。受賞歴のあるバーテンダーが腕を振るいます。</p><p class="en-only">Smoking permitted at every seat; cocktails by an award-winning bartender.</p></div>
+        <p class="ja-only">全席喫煙可のバー。受賞歴のあるバーテンダーが腕を振るいます。</p><p class="en-only">Smoking permitted at every seat; cocktails by an award-winning bartender.</p>
+        <a class="lg-map" href="https://www.google.com/maps/search/?api=1&query=RANSEN%20%E3%81%AF%E3%81%AA%E3%82%8C%20%E3%83%9B%E3%83%86%E3%83%AB%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%AA%E3%83%BC%E3%82%BF%E3%83%8B" target="_blank" rel="noopener">GOOGLE MAP ↗</a></div>
+
     </div>
     <p class="note ja-only">営業時間や喫煙のルールは変わることがあります。お出かけ前に各店舗へご確認ください。</p>
     <p class="note en-only">Hours and smoking policies may change. Please check with each venue before visiting.</p>
