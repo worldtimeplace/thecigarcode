@@ -836,6 +836,15 @@ html,body{overflow-x:hidden!important;max-width:100%}
 #map .chip.h::before{background:#9a7432}
 #map .chip.w::before{background:transparent;border:1px solid #0a0a0a}
 #map .chip.on::before{box-shadow:0 0 0 1px #fff}
+
+html{touch-action:pan-y pinch-zoom}
+body{position:relative}
+#archive .gal{grid-template-columns:repeat(4,1fr)!important;gap:6px!important;max-width:620px}
+#archive .g{aspect-ratio:3/4!important;overflow:hidden;position:relative;padding:0;border:0;cursor:zoom-in}
+#archive .g i{font-size:16px}
+#archive .vol-h{margin-bottom:16px}
+@media(min-width:900px){#archive .gal{grid-template-columns:repeat(6,1fr)!important;max-width:none}}
+#lb img,#lb video{filter:none!important}
 </style>
 </head>
 <body class="locked">
@@ -908,11 +917,9 @@ html,body{overflow-x:hidden!important;max-width:100%}
 <section id="archive" class="fband">
   <div class="wrap">
     <header class="hm"><div class="kk">FEATURE</div><h2 class="hh2"><span class="wd">The Archive</span></h2></header>
-    <h2 class="ja-only">これまでの会</h2><h2 class="en-only">Past gatherings</h2>
-    <article class="vol">
-      <div class="vol-h"><div class="vol-no">VOL.01</div><div><b>2026.10.21 WED</b><span>THE CAPITOL BAR · ザ・キャピトルホテル 東急</span></div></div>
-      <p class="ja-only">第1回の記録。</p><p class="en-only">Record of our first gathering.</p>
-      <div class="gal">
+        <article class="vol">
+      <div class="vol-h"><div><b>2026.10.21 WED</b><span>THE CAPITOL BAR · ザ・キャピトルホテル 東急</span></div></div>
+            <div class="gal">
         <button class="g v" data-v="media/night.mp4"><img src="media/night_poster.jpg" alt=""><i>▶</i></button>
         <button class="g v" data-v="media/hero.mp4"><img src="media/hero_poster.jpg" alt=""><i>▶</i></button>
         <button class="g" data-i="media/light.jpg"><img src="media/light_s.jpg" alt=""></button>
@@ -921,9 +928,9 @@ html,body{overflow-x:hidden!important;max-width:100%}
       </div>
     </article>
     <article class="vol">
-      <div class="vol-h"><div class="vol-no">VOL.—</div><div><b>日付を確認中</b><span>会場を確認中</span></div></div>
+      <div class="vol-h"><div><b>日付を確認中</b><span>会場を確認中</span></div></div>
       <div class="gal">
-        <button class="g wide" data-i="media/group.jpg"><img src="media/group_s.jpg" alt=""></button>
+        <button class="g" data-i="media/group.jpg"><img src="media/group_s.jpg" alt=""></button>
         <button class="g" data-i="media/talk_red.jpg"><img src="media/talk_red_s.jpg" alt=""></button>
       </div>
     </article>
