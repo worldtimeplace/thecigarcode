@@ -7,7 +7,7 @@
 <meta name="description" content="THE CIGAR CODE — 葉巻を軸に贅沢な時間を楽しむ、会費のない社交場。Tokyo / Worldwide.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500&family=Inter+Tight:wght@400;500;600&family=Zen+Old+Mincho:wght@400;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500&family=Inter+Tight:wght@400;500;600&family=Zen+Old+Mincho:wght@400;600;700&family=Pinyon+Script&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#0a0a0a; --ink2:#0a0a0a; --ink3:#0a0a0a;
@@ -766,7 +766,23 @@ body:not(.en) #rsvpv .en-only,body.en #rsvpv .ja-only{display:none!important}
 #lounges .lounge .lg-map{grid-column:2!important;justify-self:start!important;display:inline-block!important;margin-top:12px!important;font:600 10px "Inter Tight",Arial,sans-serif!important;letter-spacing:.22em!important;color:#0a0a0a!important;text-decoration:none!important;border:1px solid #0a0a0a!important;padding:8px 12px!important;background:none!important}
 #lounges .lounges{grid-template-columns:1fr!important}
 @media (max-width:860px){#lounges .lounge .lg-media{grid-template-columns:1fr!important;margin-left:0!important}}
-#lounges .lg-area{grid-column:1/-1;font:600 11px "Inter Tight","Zen Old Mincho",sans-serif;letter-spacing:.28em;color:#0a0a0a;margin:44px 0 0;padding-bottom:12px;border-bottom:1px solid #0a0a0a}</style>
+#lounges .lg-area{grid-column:1/-1;font:600 11px "Inter Tight","Zen Old Mincho",sans-serif;letter-spacing:.28em;color:#0a0a0a;margin:44px 0 0;padding-bottom:12px;border-bottom:1px solid #0a0a0a}
+/* === Montserrat everywhere except the logo === */
+body,body *:not(svg):not(svg *){font-family:"Montserrat","Zen Old Mincho","Hiragino Mincho ProN",serif!important}
+.wd{transform:none!important;max-width:none!important}
+.hh1,.hh2,.hh3,section h2.hh2,.hm h2.hh2,.pill h2.hh2,.stories h2.hh2,.fband h2.hh2,.hero h1.hh1,#mnav .mn-l b,#rsvpv .rv-h{font-weight:500!important;letter-spacing:.14em!important;line-height:1.25!important}
+.hero h1.hh1{font-size:clamp(26px,3.6vw,52px)!important}
+section h2.hh2,.hm h2.hh2,.pill h2.hh2,.stories h2.hh2,.fband h2.hh2{font-size:clamp(22px,3.2vw,44px)!important}
+#mnav .mn-l b{font-size:13px!important;letter-spacing:.2em!important}
+#rsvpv .rv-h{font-size:26px!important;letter-spacing:.3em!important}
+.hero .nx-count b{font-weight:400!important}
+/* keep the logo as is */
+#intro .in-t,#intro .in-t *,header .logo b,header .logo b *,.ft .logo b,.ft .logo b *{font-family:"Bodoni Moda",serif!important;font-weight:700!important;letter-spacing:.035em!important}
+#intro .wd,header .logo .wd,.ft .logo .wd{transform:scaleX(1.32)!important}
+:root{--f-mark:"Montserrat","Zen Old Mincho",serif!important;--f-body:"Montserrat","Zen Old Mincho",serif!important;--f-serif:"Montserrat","Zen Old Mincho",serif!important;--f-jp:"Montserrat","Zen Old Mincho",serif!important}
+html body .vol-no,html body .timeline .yr,html body .dvline b,html body .meaning .k,html body .card .no,html body .gentle .n,html body .values b{font-family:"Montserrat","Zen Old Mincho",serif!important;font-style:normal!important}
+body *{font-style:normal!important}.vol-no{font-weight:300!important;letter-spacing:.1em!important}
+</style>
 </head>
 <body class="locked">
 <div id="intro" aria-hidden="true"><canvas id="smk"></canvas><div class="in-t"><span class="wd">THE CIGAR CODE</span></div><div class="in-a">20歳以上の方を対象としたサイトです · For adults aged 20 and over</div></div>
