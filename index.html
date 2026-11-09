@@ -942,6 +942,7 @@ body.lx-lock{overflow:hidden}
 #lounges .tag-shop{background:none!important;color:#666!important;border:1px solid #999!important}
 .vol-h .vol-loc{display:table;margin:12px 0 8px;padding:3px 10px;border:1px solid rgba(255,255,255,.55);font:500 11px "Montserrat","Zen Old Mincho",sans-serif;font-style:normal;letter-spacing:.24em;color:#fff}
 .fband .vol-h .vol-loc,.fband .vol-h .vol-loc span{color:#fff!important}
+#pinInfo .pi-flag{display:inline-block;margin-left:14px;font-size:1.25em;line-height:1;vertical-align:-0.08em;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;filter:none!important}
 </style>
 </head>
 <body class="locked">
@@ -1740,7 +1741,8 @@ body.lx-lock{overflow:hidden}
   var chips=document.getElementById('pinChips');
   Object.keys(PINS).forEach(function(k){var b=document.createElement('button');b.type='button';b.dataset.pin=k;b.className='chip '+PINS[k].t;b.textContent=PINS[k].k;b.onclick=function(){fx=true;showPin(k)};chips.appendChild(b);});
   function showPin(id){cur=id;var p=PINS[id],t=p[lang()];
-    info.innerHTML='<div class="k">'+p.k+'</div><b>'+t[0]+'</b><p>'+t[1]+'</p>';
+    var FL={cuba:'🇨🇺',dr:'🇩🇴',nic:'🇳🇮',hon:'🇭🇳',mex:'🇲🇽',ecu:'🇪🇨',ct:'🇺🇸',cam:'🇨🇲',bra:'🇧🇷',idn:'🇮🇩'};
+    info.innerHTML='<div class="k">'+p.k+'</div><b>'+t[0]+'<span class="pi-flag" aria-hidden="true">'+FL[id]+'</span></b><p>'+t[1]+'</p>';
     document.querySelectorAll('.pin,.chip').forEach(function(g){g.classList.remove('on','fl');if(g.dataset.pin===id){void g.getBoundingClientRect();g.classList.add('on');if(fx)g.classList.add('fl');}});
     var bxe=document.getElementById('carBox');if(bxe){bxe.classList.remove('fl');if(fx&&C_KEYS.indexOf(id)>=0){void bxe.getBoundingClientRect();bxe.classList.add('fl');}}
     if(fx){var vis=[].filter.call(document.querySelectorAll('.pin[data-pin="'+id+'"]'),function(g){return g.getBoundingClientRect().width>0});var g0=vis[0];
