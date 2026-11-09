@@ -17,7 +17,7 @@ async function summary(store, event) {
     attending: yes.reduce((n, r) => n + (r.guests || 1), 0),
     responses: yes.length,
     declined: rows.filter((r) => r.status === "no").length,
-    people: yes.map((r) => ({ name: r.name, guests: r.guests || 1 })),
+    people: yes.map((r) => ({ name: r.name, company: r.company || "", guests: r.guests || 1 })),
   };
 }
 
@@ -37,12 +37,13 @@ export default async (req) => {
     const event = String(b.event || "");
     const id = String(b.id || "");
     const name = String(b.name || "").replace(/\s+/g, " ").trim().slice(0, 40);
+    const company = String(b.company || "").replace(/\s+/g, " ").trim().slice(0, 60);
     const status = b.status === "yes" ? "yes" : b.status === "no" ? "no" : "";
     const guests = Math.min(4, Math.max(1, parseInt(b.guests, 10) || 1));
     if (b.website) return json({ ok: true }); // honeypot
     if (!EVENTS.has(event) || !/^[a-z0-9-]{16,64}$/.test(id) || !name || !status)
       return json({ error: "invalid" }, 400);
-    await store.setJSON(`${event}/${id}`, { name, status, guests: status === "yes" ? guests : 0, at: Date.now() });
+    await store.setJSON(`${event}/${id}`, { name, company, status, guests: status === "yes" ? guests : 0, at: Date.now() });
     return json(await summary(store, event));
   }
 

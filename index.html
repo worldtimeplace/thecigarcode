@@ -749,6 +749,7 @@ body:not(.en) #rsvpv .en-only,body.en #rsvpv .ja-only{display:none!important}
 #rsvpv .rv-lh b{font-family:"Bodoni Moda",serif;font-size:22px;color:#fff;letter-spacing:.02em}
 #rsvpv #rvPeople{list-style:none;margin:0;padding:0}
 #rsvpv #rvPeople li{display:flex;justify-content:space-between;font-family:"Zen Old Mincho",serif;font-size:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);letter-spacing:.06em}
+#rsvpv #rvPeople li small{display:block;font-size:11px;color:#9a9a9a;letter-spacing:.04em;margin-top:3px}
 #rsvpv #rvPeople li em{font-style:normal;font-size:11px;color:#9a9a9a}
 #rsvpv #rvPeople li.rv-none{color:#8a8a8a;font-size:12px}
 #rsvpv .rv-err{min-height:1.2em;font-family:"Zen Old Mincho",serif}
@@ -1708,6 +1709,7 @@ body.en #davidoff p{text-align:left}
 <div class="rv-me" id="rvMe" hidden></div>
 <form id="rvForm" autocomplete="on">
 <label class="rv-l"><span class="ja-only">お名前</span><span class="en-only">Name</span><input type="text" id="rvName" maxlength="40" required></label>
+<label class="rv-l"><span class="ja-only">会社名（任意）</span><span class="en-only">Company (optional)</span><input type="text" id="rvCo" maxlength="60" autocomplete="organization"></label>
 <input type="text" id="rvWeb" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
 <div class="rv-l"><span class="ja-only">ご出欠</span><span class="en-only">Attendance</span>
 <div class="rv-ch"><button type="button" data-v="yes"><span class="ja-only">参加する</span><span class="en-only">Attending</span></button><button type="button" data-v="no"><span class="ja-only">参加しない</span><span class="en-only">Not attending</span></button></div></div>
@@ -2008,10 +2010,10 @@ function ld(){try{return JSON.parse(localStorage.getItem(K)||'null')}catch(_){re
 function uid(){var a=new Uint8Array(12);(window.crypto||{}).getRandomValues?crypto.getRandomValues(a):a.forEach(function(_,i){a[i]=Math.random()*256|0});return Array.prototype.map.call(a,function(x){return('0'+x.toString(16)).slice(-2)}).join('')}
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function render(d){if(!d||d.error)return;$('rvCount').textContent=d.attending;$('rvCount2').textContent=d.attending+(en()?'':'名');
-$('rvPeople').innerHTML=d.people.length?d.people.map(function(p){return'<li><span>'+esc(p.name)+'</span>'+(p.guests>1?'<em>'+(en()?'+'+(p.guests-1):'ほか'+(p.guests-1)+'名')+'</em>':'')+'</li>'}).join(''):'<li class="rv-none">'+(en()?'No responses yet.':'まだ回答はありません。')+'</li>'}
+$('rvPeople').innerHTML=d.people.length?d.people.map(function(p){return'<li><span>'+esc(p.name)+(p.company?'<small>'+esc(p.company)+'</small>':'')+'</span>'+(p.guests>1?'<em>'+(en()?'+'+(p.guests-1):'ほか'+(p.guests-1)+'名')+'</em>':'')+'</li>'}).join(''):'<li class="rv-none">'+(en()?'No responses yet.':'まだ回答はありません。')+'</li>'}
 function load(){fetch(API+'?event='+EV,{cache:'no-store'}).then(function(r){return r.json()}).then(render).catch(function(){})}
 function sel(x){att=x;[].forEach.call(v.querySelectorAll('.rv-ch button'),function(b){b.classList.toggle('sel',b.getAttribute('data-v')===x)});$('rvNumL').style.display=x==='no'?'none':''}
-function me(){var m=ld();if(!m){$('rvMe').hidden=true;return}$('rvName').value=m.name;sel(m.status);if(m.guests)$('rvNum').value=m.guests;
+function me(){var m=ld();if(!m){$('rvMe').hidden=true;return}$('rvName').value=m.name;$('rvCo').value=m.company||'';sel(m.status);if(m.guests)$('rvNum').value=m.guests;
 $('rvMe').hidden=false;$('rvMe').textContent=en()?('Your answer: '+(m.status==='yes'?'Attending ('+m.guests+')':'Not attending')+' — you can change it below.'):('ご回答済み：'+(m.status==='yes'?'参加（'+m.guests+'名）':'不参加')+'　下で変更できます。')}
 function op(e){if(e)e.preventDefault();var n=$('mnav');if(n)n.classList.remove('on');v.classList.add('on');v.setAttribute('aria-hidden','false');document.body.classList.add('mn-open');me();load()}
 function cl(){v.classList.remove('on');v.setAttribute('aria-hidden','true');document.body.classList.remove('mn-open')}
@@ -2019,8 +2021,8 @@ function cl(){v.classList.remove('on');v.setAttribute('aria-hidden','true');docu
 [].forEach.call(v.querySelectorAll('.rv-ch button'),function(b){b.onclick=function(){sel(b.getAttribute('data-v'))}});
 $('rvForm').onsubmit=function(e){e.preventDefault();var nm=$('rvName').value.trim(),er=$('rvErr');
 if(!nm){er.textContent=en()?'Please enter your name.':'お名前をご記入ください。';return}if(!att){er.textContent=en()?'Please choose attending or not.':'ご出欠をお選びください。';return}
-var m=ld()||{};m.id=m.id||uid();m.name=nm;m.status=att;m.guests=att==='yes'?+$('rvNum').value:0;er.textContent='';$('rvSend').disabled=true;
-fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({event:EV,id:m.id,name:nm,status:att,guests:m.guests,website:$('rvWeb').value})})
+var m=ld()||{};m.id=m.id||uid();m.name=nm;m.company=$('rvCo').value.trim();m.status=att;m.guests=att==='yes'?+$('rvNum').value:0;er.textContent='';$('rvSend').disabled=true;
+fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({event:EV,id:m.id,name:nm,company:m.company,status:att,guests:m.guests,website:$('rvWeb').value})})
 .then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){sv(m);render(d);me();er.textContent=en()?'Thank you. Your answer has been saved.':'ありがとうございます。回答を受け付けました。'})
 .catch(function(){er.textContent=en()?'Could not send. Please try again.':'送信できませんでした。もう一度お試しください。'}).then(function(){$('rvSend').disabled=false})};
 load();setInterval(function(){if(!document.hidden)load()},30000);if(location.hash==='#rsvp')op();})();</script>
