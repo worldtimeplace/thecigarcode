@@ -972,6 +972,9 @@ body.lx-lock{overflow:hidden}
 .size .stick.pyr{background:
  linear-gradient(180deg,rgba(255,240,220,.10),transparent 30%,transparent 70%,rgba(0,0,0,.18)),
  url(media/wrapper_tex.jpg) center/100% 100% no-repeat,#6a4128!important}
+.size .stick::after{width:calc(var(--h)*.62)!important;min-width:16px}
+.size .stick::before{width:calc(var(--h)*.16)!important}
+.size .stickbox{display:flex;align-items:center;min-height:40px}
 </style>
 </head>
 <body class="locked">
@@ -1695,6 +1698,11 @@ body.lx-lock{overflow:hidden}
       '<div class="sp">'+v[3]+'mm × <em>'+v[4]+'</em><br><span class="ja-only">約'+v[5]+'分</span><span class="en-only">~'+v[5]+' min</span></div>';
     box.appendChild(d);
   });
+  /* true scale: diameter(mm)=ring/64 inch */
+  function trueScale(){var sb=box.querySelector('.stickbox');if(!sb)return;var pxmm=sb.clientWidth/maxL;
+    box.querySelectorAll('.size').forEach(function(d,i){var v=V[i],st=d.querySelector('.stick');st.style.setProperty('--h',Math.round(v[4]/64*25.4*pxmm)+'px')})}
+  trueScale();window.addEventListener('resize',trueScale);
+  document.querySelectorAll('[data-tab]').forEach(function(t){t.addEventListener('click',function(){setTimeout(trueScale,30)})});
 })();
 </script>
 <script>
