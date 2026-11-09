@@ -47,6 +47,16 @@ export default async (req) => {
     return json(await summary(store, event));
   }
 
+  if (req.method === "DELETE") {
+    let b;
+    try { b = await req.json(); } catch { return json({ error: "bad json" }, 400); }
+    const event = String(b.event || "");
+    const id = String(b.id || "");
+    if (!EVENTS.has(event) || !/^[a-z0-9-]{16,64}$/.test(id)) return json({ error: "invalid" }, 400);
+    await store.delete(`${event}/${id}`);
+    return json(await summary(store, event));
+  }
+
   return json({ error: "method" }, 405);
 };
 

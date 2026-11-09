@@ -744,6 +744,9 @@ body:not(.en) #rsvpv .en-only,body.en #rsvpv .ja-only{display:none!important}
 .hero .nx-count b{font-family:"Bodoni Moda",serif;font-weight:700;font-size:34px;line-height:1;letter-spacing:.02em}
 .hero .nx-count b small{font-family:"Zen Old Mincho",serif;font-size:13px;font-weight:400;margin-left:4px;color:#ddd}
 #rsvpv .rv-me{font-family:"Zen Old Mincho",serif;font-size:12.5px;color:#fff;border:1px solid rgba(255,255,255,.25);padding:12px 14px;margin:0 0 24px;line-height:1.7}
+#rsvpv #rvMeT{display:block}
+#rsvpv #rvCancel{margin-top:10px;background:none;border:1px solid rgba(255,255,255,.35);color:#fff;font:500 11px "Zen Old Mincho","Inter Tight",serif;letter-spacing:.14em;padding:8px 14px;cursor:pointer}
+#rsvpv #rvCancel:disabled{opacity:.5}
 #rsvpv .rv-list{margin-top:40px;border-top:1px solid rgba(255,255,255,.18);padding-top:20px}
 #rsvpv .rv-lh{display:flex;justify-content:space-between;align-items:baseline;font:600 10px "Inter Tight","Zen Old Mincho",sans-serif;letter-spacing:.24em;color:#9a9a9a;margin-bottom:10px}
 #rsvpv .rv-lh b{font-family:"Bodoni Moda",serif;font-size:22px;color:#fff;letter-spacing:.02em}
@@ -1706,7 +1709,7 @@ body.en #davidoff p{text-align:left}
 <h2 class="rv-h"><span class="wd">RSVP</span></h2>
 <p class="rv-ev ja-only">2026年11月18日（水）20:00–23:00<br>キャピトル東急 4F　ザ・キャピトルバー（予定）</p>
 <p class="rv-ev en-only">Wed 18 Nov 2026, 20:00–23:00<br>The Capitol Bar, The Capitol Hotel Tokyu (planned)</p>
-<div class="rv-me" id="rvMe" hidden></div>
+<div class="rv-me" id="rvMe" hidden><span id="rvMeT"></span><button type="button" id="rvCancel"><span class="ja-only">回答を取り消す</span><span class="en-only">Cancel my reply</span></button></div>
 <form id="rvForm" autocomplete="on">
 <label class="rv-l"><span class="ja-only">お名前</span><span class="en-only">Name</span><input type="text" id="rvName" maxlength="40" required></label>
 <label class="rv-l"><span class="ja-only">会社名（任意）</span><span class="en-only">Company (optional)</span><input type="text" id="rvCo" maxlength="60" autocomplete="organization"></label>
@@ -2014,7 +2017,7 @@ $('rvPeople').innerHTML=d.people.length?d.people.map(function(p){return'<li><spa
 function load(){fetch(API+'?event='+EV,{cache:'no-store'}).then(function(r){return r.json()}).then(render).catch(function(){})}
 function sel(x){att=x;[].forEach.call(v.querySelectorAll('.rv-ch button'),function(b){b.classList.toggle('sel',b.getAttribute('data-v')===x)});$('rvNumL').style.display=x==='no'?'none':''}
 function me(){var m=ld();if(!m){$('rvMe').hidden=true;return}$('rvName').value=m.name;$('rvCo').value=m.company||'';sel(m.status);if(m.guests)$('rvNum').value=m.guests;
-$('rvMe').hidden=false;$('rvMe').textContent=en()?('Your answer: '+(m.status==='yes'?'Attending ('+m.guests+')':'Not attending')+' — you can change it below.'):('ご回答済み：'+(m.status==='yes'?'参加（'+m.guests+'名）':'不参加')+'　下で変更できます。')}
+$('rvMe').hidden=false;$('rvMeT').textContent=en()?('Your answer: '+(m.status==='yes'?'Attending ('+m.guests+')':'Not attending')+' — you can change it below.'):('ご回答済み：'+(m.status==='yes'?'参加（'+m.guests+'名）':'不参加')+'　下で変更できます。')}
 function op(e){if(e)e.preventDefault();var n=$('mnav');if(n)n.classList.remove('on');v.classList.add('on');v.setAttribute('aria-hidden','false');document.body.classList.add('mn-open');me();load()}
 function cl(){v.classList.remove('on');v.setAttribute('aria-hidden','true');document.body.classList.remove('mn-open')}
 [].forEach.call(document.querySelectorAll('a[href="#rsvp"]'),function(a){a.addEventListener('click',op)});$('rvClose').onclick=cl;
@@ -2025,6 +2028,8 @@ var m=ld()||{};m.id=m.id||uid();m.name=nm;m.company=$('rvCo').value.trim();m.sta
 fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({event:EV,id:m.id,name:nm,company:m.company,status:att,guests:m.guests,website:$('rvWeb').value})})
 .then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){sv(m);render(d);me();er.textContent=en()?'Thank you. Your answer has been saved.':'ありがとうございます。回答を受け付けました。'})
 .catch(function(){er.textContent=en()?'Could not send. Please try again.':'送信できませんでした。もう一度お試しください。'}).then(function(){$('rvSend').disabled=false})};
+$('rvCancel').onclick=function(){var m=ld(),er=$('rvErr');if(!m||!m.id)return;if(!confirm(en()?'Cancel your reply?':'回答を取り消しますか？'))return;var c=$('rvCancel');c.disabled=true;
+fetch(API,{method:'DELETE',headers:{'content-type':'application/json'},body:JSON.stringify({event:EV,id:m.id})}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){try{localStorage.removeItem(K)}catch(_){}render(d);$('rvMe').hidden=true;$('rvName').value='';$('rvCo').value='';$('rvNum').value='1';att='';[].forEach.call(v.querySelectorAll('.rv-ch button'),function(b){b.classList.remove('sel')});$('rvNumL').style.display='';er.textContent=en()?'Your reply has been cancelled.':'回答を取り消しました。'}).catch(function(){er.textContent=en()?'Could not cancel. Please try again.':'取り消せませんでした。もう一度お試しください。'}).then(function(){c.disabled=false})};
 load();setInterval(function(){if(!document.hidden)load()},30000);if(location.hash==='#rsvp')op();})();</script>
 <script>(function(){var s=document.getElementById('library');if(!s)return;[].forEach.call(s.querySelectorAll('.lb-tabs button'),function(b){b.onclick=function(){[].forEach.call(s.querySelectorAll('.lb-tabs button'),function(x){x.classList.toggle('on',x===b)});[].forEach.call(s.querySelectorAll('.lb-p'),function(p){p.hidden=p.getAttribute('data-p')!==b.getAttribute('data-t')})}})})();</script>
 <script>(function(){var t=document.getElementById('lounge-capitol');if(!t)return;document.querySelectorAll('a[href="#lounge-capitol"]').forEach(function(a){a.addEventListener('click',function(){t.classList.remove('flash');void t.offsetWidth;setTimeout(function(){t.classList.add('flash');setTimeout(function(){t.classList.remove('flash')},4200)},500)})})})();</script>
