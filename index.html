@@ -1001,6 +1001,44 @@ body.en #habList .hb-tx,body.en .lounge p,body.en p{text-align:left!important}
 #lx.closing .lx-bg{transition:opacity 1.25s cubic-bezier(.4,0,.2,1) .05s}
 #lx.closing .lx-cap,#lx.closing .lx-x,#lx.closing .lx-nav{transition:opacity .55s ease 0s,transform .55s ease 0s!important}
 #lx.closing .lx-media::after{transition:opacity .5s ease 0s}
+/* davidoff feature */
+#davidoff .dv-lead{max-width:760px;margin:6px 0 10px}
+#davidoff .dv-h{display:flex;gap:18px;align-items:flex-start;margin:64px 0 22px;padding-top:26px;border-top:1px solid #0a0a0a}
+#davidoff .dv-no{font:400 30px/1 "Bodoni Moda","Didot",serif;color:#8a8a8a;min-width:44px}
+#davidoff .dv-k{font:500 10px "Montserrat",sans-serif;letter-spacing:.32em;color:#8a8a8a;margin-bottom:6px}
+#davidoff .dv-h h3{margin:0;font-size:20px;letter-spacing:.06em;font-weight:500}
+#davidoff .dv-two{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+#davidoff .dv-two .body{margin:0}
+#davidoff .dv-tl li{grid-template-columns:64px 1fr}
+#davidoff .dv-cols{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+#davidoff .dv-col{border:1px solid #d9d9d9;padding:24px 22px;background:rgba(255,255,255,.35)}
+#davidoff .dv-ck{font:500 10px "Montserrat",sans-serif;letter-spacing:.32em;color:#8a8a8a}
+#davidoff .dv-col h4{margin:6px 0 8px;font-size:18px;font-weight:500;letter-spacing:.04em}
+#davidoff .dv-cd{font-size:12.5px;line-height:1.85;color:#444;margin:0 0 12px}
+#davidoff .dv-col ul{list-style:none;margin:0;padding:0;border-top:1px solid #e2e2e2}
+#davidoff .dv-col li{padding:12px 0;border-bottom:1px solid #e2e2e2}
+#davidoff .dv-col li b{font:500 14px "Montserrat",sans-serif;letter-spacing:.03em;color:#0a0a0a}
+#davidoff .dv-col li small{margin-left:8px;font-size:10px;letter-spacing:.08em;color:#888}
+#davidoff .dv-col li p{margin:4px 0 0;font-size:12.5px;line-height:1.8;color:#333}
+#davidoff .dv-note{font-size:12px;color:#666;margin-top:14px}
+#davidoff .dv-shops{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+#davidoff .dv-shop{border:1px solid #d9d9d9;padding:22px 20px;background:rgba(255,255,255,.35)}
+#davidoff .dv-sn{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+#davidoff .dv-sn b{font:500 14.5px/1.35 "Montserrat",sans-serif;color:#0a0a0a}
+#davidoff .dv-tag{flex:none;font:500 9px "Montserrat",sans-serif;letter-spacing:.18em;padding:3px 7px;background:#0a0a0a;color:#fff}
+#davidoff .dv-tag-o{background:none;color:#666;border:1px solid #999}
+#davidoff .dv-shop small{display:block;font-size:10.5px;color:#888;margin-top:3px}
+#davidoff .dv-shop p{font-size:12.5px;line-height:1.8;color:#333;margin:10px 0}
+#davidoff .dv-shop dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0;font-size:12px}
+#davidoff .dv-shop dt{color:#888;font-size:10.5px;letter-spacing:.1em}
+#davidoff .dv-shop dd{margin:0;color:#111}
+#davidoff .dv-shop a{color:#111}
+#davidoff .dv-know{list-style:none;margin:0;padding:0;border-top:1px solid #d9d9d9}
+#davidoff .dv-know li{padding:14px 0;border-bottom:1px solid #e2e2e2;font-size:13px;line-height:1.85;color:#222}
+#davidoff .dv-know b{font-weight:600;margin-right:4px}
+#davidoff .dv-src{font-size:10.5px;color:#888;margin-top:22px}
+@media(max-width:860px){#davidoff .dv-two,#davidoff .dv-cols,#davidoff .dv-shops{grid-template-columns:1fr}#davidoff .dv-h{margin-top:52px}}
+body.en #davidoff p{text-align:left}
 </style>
 </head>
 <body class="locked">
@@ -1394,27 +1432,50 @@ body.en #habList .hb-tx,body.en .lounge p,body.en p{text-align:left!important}
 <section id="davidoff">
   <div class="wrap">
     <header class="hm"><div class="kk">PROFILE</div><h2 class="hh2"><span class="wd">Davidoff, King of Cigars</span></h2></header>
-    <h2 class="ja-only">ダビドフ<br><span class="sub">「葉巻の王」と呼ばれた男</span></h2>
-    <h2 class="en-only">Davidoff<br><span class="sub">The man they called the King of Cigars</span></h2>
-    <div class="dvgrid">
-      <div>
-        <p class="body ja-only">ダビドフの名は、創業者ジノ・ダビドフに由来します。ジュネーブの小さなたばこ店から始まり、品質への妥協なき姿勢で世界の愛好家に愛されるブランドとなりました。現在はスイス・バーゼルのオッティンガー・ダビドフ社のもと、主にドミニカ共和国でつくられています。</p>
-        <p class="body en-only">The Davidoff name comes from its founder, Zino Davidoff. From a small tobacconist in Geneva, an uncompromising devotion to quality made it a brand loved by aficionados worldwide. Today it is owned by Oettinger Davidoff of Basel and made mainly in the Dominican Republic.</p>
-        <div class="dvlondon">
-          <div class="mark">Davidoff of London</div>
-          <p class="ja-only">ロンドンのセント・ジェームズ・ストリートに1980年から店を構える「ダビドフ・オブ・ロンドン」。サハキアン家が営む独立した名店で、開店の日にはジノ・ダビドフ本人が訪れたといいます。</p>
-          <p class="en-only">On St James's Street since 1980, Davidoff of London is an independent shop run by the Sahakian family. Zino Davidoff himself visited on its opening day.</p>
-        </div>
-      </div>
-      <ol class="dvline">
-        <li><b>1906</b><span class="ja-only">ジノ・ダビドフ、現在のウクライナに生まれる。</span><span class="en-only">Zino Davidoff is born in present-day Ukraine.</span></li>
-        <li><b>1911</b><span class="ja-only">一家でスイス・ジュネーブへ。父がたばこ店を開く。</span><span class="en-only">The family moves to Geneva; his father opens a tobacco shop.</span></li>
-        <li><b>1968</b><span class="ja-only">「ダビドフ」の名を冠した最初の葉巻が登場（キューバ製）。</span><span class="en-only">The first Davidoff-branded cigars appear, made in Cuba.</span></li>
-        <li><b>1970</b><span class="ja-only">バーゼルのオッティンガー社が事業を引き継ぎ、ジノは大使として活躍。</span><span class="en-only">Oettinger of Basel takes over; Zino becomes its ambassador.</span></li>
-        <li><b>1990</b><span class="ja-only">ヘンドリック・ケルナーと組み、ドミニカ共和国での生産を開始。</span><span class="en-only">Production begins in the Dominican Republic with Hendrik Kelner.</span></li>
-        <li><b>1994</b><span class="ja-only">ジノ・ダビドフ、ジュネーブで死去（87歳）。</span><span class="en-only">Zino Davidoff dies in Geneva, aged 87.</span></li>
-      </ol>
+    <h2 class="ja-only">ダビドフ<br><span class="sub">「葉巻の王」と呼ばれた男と、そのメゾン</span></h2>
+    <h2 class="en-only">Davidoff<br><span class="sub">The King of Cigars, and the house he built</span></h2>
+    <p class="ja-only body dv-lead">ジュネーブの小さなたばこ店から始まったダビドフは、いまやスイス・バーゼルのエッティンガー・ダビドフ社のもと、世界130か国以上で愛される葉巻のメゾンです。キューバで生まれ、ドミニカ共和国で磨かれた「品質に妥協しない」という哲学は、創業者ジノ・ダビドフその人の生き方そのものでした。</p><p class="en-only body dv-lead">From a small Geneva tobacconist, Davidoff has become a cigar house enjoyed in more than 130 countries, under Oettinger Davidoff of Basel. Born in Cuba and perfected in the Dominican Republic, its uncompromising pursuit of quality reflects the life of its founder, Zino Davidoff.</p>
+
+    <div class="dv-h"><span class="dv-no">01</span><div><div class="dv-k">THE MAN</div><h3 class="ja-only">ジノ・ダビドフという人</h3><h3 class="en-only">Zino Davidoff</h3></div></div>
+    <div class="dv-two">
+      <p class="ja-only body">1906年、葉たばこを商う一家に生まれたジノは、5歳で家族とともにジュネーブへ移りました。若い頃に中南米を巡って葉の育て方から葉巻の巻き方までを身につけ、店を継いでからは、葉巻を最良の状態で保つことに情熱を注ぎます。第二次世界大戦中も、中立国スイスでハバナ葉巻を扱い続けたことで知られています。</p><p class="en-only body">Born in 1906 into a family of tobacco merchants, Zino moved to Geneva with his family at five. Travels in Latin America taught him everything from growing leaf to rolling cigars, and once he took over the shop he devoted himself to keeping cigars in perfect condition. During the Second World War he kept supplying Havanas from neutral Switzerland.</p>
+      <p class="ja-only body">1946年には、ボルドーの一級シャトーの名をつけた葉巻を売り出し、葉巻をワインのように味わう文化を広めました。生涯「葉巻は人生をゆっくり味わうためのもの」という姿勢を貫き、「葉巻の王」と呼ばれるようになります。</p><p class="en-only body">In 1946 he named his cigars after Bordeaux first growths, encouraging smokers to savour them like fine wine. His lifelong conviction that a cigar is a way of savouring time earned him the title “King of Cigars”.</p>
     </div>
+
+    <div class="dv-h"><span class="dv-no">02</span><div><div class="dv-k">TIMELINE</div><h3 class="ja-only">ダビドフの歩み</h3><h3 class="en-only">A timeline</h3></div></div>
+    <ol class="dvline dv-tl"><li><b>1906</b><span class="ja-only">ジノ・ダビドフ（本名ズセレ＝マイヤー・ダビドフ）、ロシア帝国のノヴホロド＝シヴェルスキー（現ウクライナ）に生まれる。</span><span class="en-only">Zino Davidoff (born Sussele-Meier Davidoff) is born in Novhorod-Siverskyi, in the Russian Empire — today's Ukraine.</span></li><li><b>1911</b><span class="ja-only">一家でスイス・ジュネーブへ移住。父ヒレルがたばこ店を開き、亡命ロシア人の集う場所になる。</span><span class="en-only">The family settles in Geneva. His father Hillel opens a tobacco shop that becomes a meeting place for Russian émigrés.</span></li><li><b>1920s</b><span class="ja-only">若きジノは中南米へ渡り、アルゼンチン、ブラジル、キューバで葉たばこの栽培と葉巻づくりを学ぶ。</span><span class="en-only">As a young man, Zino travels to Latin America — Argentina, Brazil and Cuba — to learn tobacco growing and cigar making.</span></li><li><b>1930</b><span class="ja-only">ジュネーブに戻り、家業の店を受け継ぐ。葉巻を最良の状態で保つための湿度管理に力を注ぎ、ヒュミドールを普及させた一人として知られる。</span><span class="en-only">Back in Geneva he takes over the family shop and devotes himself to keeping cigars in perfect condition; he is credited as a pioneer of the humidor.</span></li><li><b>1946</b><span class="ja-only">ボルドーの一級シャトーの名を冠した「シャトー・シリーズ」を発表。ハバナのオヨ・デ・モントレーが製造し、「シャトー・ラトゥール」から始まった。</span><span class="en-only">He launches the Château series, named after Bordeaux first growths and made in Havana by Hoyo de Monterrey — beginning with Château Latour.</span></li><li><b>1968</b><span class="ja-only">キューバの公社クバタバコとの合意により、「ダビドフ」の名を冠した最初の葉巻が誕生。コイーバと同じエル・ラギート工場で作られた。</span><span class="en-only">Agreement with Cuba's Cubatabaco brings the first cigars bearing the Davidoff name, rolled at El Laguito, home of Cohiba.</span></li><li><b>1970</b><span class="ja-only">バーゼルのたばこ会社エッティンガー（1875年創業）がジュネーブの店とブランドを取得。ジノはブランドの顔として世界を巡る。</span><span class="en-only">Oettinger of Basel (founded 1875) acquires the Geneva shop and brand; Zino becomes its ambassador to the world.</span></li><li><b>1989</b><span class="ja-only">品質をめぐってキューバ側と対立。基準に満たないとした10万本を超えるキューバ製ダビドフを焼却したことは、今も語り継がれる。</span><span class="en-only">A dispute with Cuba over quality comes to a head; Zino has more than 100,000 Cuban Davidoffs he judged substandard burned — a story still told today.</span></li><li><b>1990</b><span class="ja-only">ドミニカ共和国サンティアゴで、ヘンドリック・“ヘンケ”・ケルナーのタバドム社と組み、新たな生産を開始。翌1991年には全ラインがドミニカ製に。</span><span class="en-only">Production moves to Santiago, Dominican Republic, in partnership with Hendrik “Henke” Kelner's Tabadom; by 1991 every line is Dominican.</span></li><li><b>1994</b><span class="ja-only">ジノ・ダビドフ、ジュネーブで死去（87歳）。</span><span class="en-only">Zino Davidoff dies in Geneva, aged 87.</span></li><li><b>2013</b><span class="ja-only">ニカラグア産の葉だけで作る「ダビドフ ニカラグア」を発表。力強い「ブラックバンド」の始まりとなる。</span><span class="en-only">Davidoff Nicaragua, an all-Nicaraguan blend, launches the bolder Black Band collection.</span></li><li><b>2026</b><span class="ja-only">ドミニカ産の葉だけで作る「ピュロ・ドミニカーノ」がブラックバンドに加わる。</span><span class="en-only">Puro Dominicano, made entirely from Dominican tobacco, joins the Black Band collection.</span></li></ol>
+
+    <div class="dv-h"><span class="dv-no">03</span><div><div class="dv-k">CROP TO SHOP</div><h3 class="ja-only">畑から店頭まで</h3><h3 class="en-only">From crop to shop</h3></div></div>
+    <div class="dv-two">
+      <p class="ja-only body">ダビドフの葉巻は、ドミニカ共和国サンティアゴ近郊の自社工場で作られています。1990年にヘンケ・ケルナーと組んで以来、畑で葉を育てるところから、発酵・熟成、巻き上げ、店頭に並ぶまでを自社グループで手がける「クロップ・トゥ・ショップ（畑から店頭まで）」を掲げています。</p><p class="en-only body">Davidoff cigars are made at the company's own factories near Santiago in the Dominican Republic. Since partnering with Henke Kelner in 1990, the house has followed a “crop to shop” philosophy — growing, fermenting, ageing, rolling and retailing within its own group.</p>
+      <p class="ja-only body">ブレンドを長く支えたケルナーとマスターブレンダーのエラディオ・ディアスは第一線を退き、現在はマスターブレンダーのチームと、生産責任者のハムレット・エスピナルがその技を受け継いでいます。葉はドミニカのほか、ニカラグア、エクアドル、ブラジルなど各地から選ばれています。</p><p class="en-only body">Kelner and long-time master blender Eladio Diaz have since stepped back; a team of master blenders, with head of production Hamlet Espinal, now carries their craft forward. Leaf is sourced from the Dominican Republic as well as Nicaragua, Ecuador, Brazil and beyond.</p>
+    </div>
+
+    <div class="dv-h"><span class="dv-no">04</span><div><div class="dv-k">THE COLLECTION</div><h3 class="ja-only">ダビドフの葉巻</h3><h3 class="en-only">The cigars</h3></div></div>
+    <div class="dv-cols"><div class="dv-col"><div class="dv-ck">WHITE BAND</div><h4 class="ja-only">ホワイトバンド</h4><h4 class="en-only">White Band</h4><p class="ja-only dv-cd">白い帯の、ダビドフの原点となる定番。穏やかでなめらか、品のある味わいが特徴です。</p><p class="en-only dv-cd">The classic white-banded core range: smooth, refined and balanced.</p><ul><li><b>Signature</b><small class="ja-only">シグネチャー</small><p class="ja-only">最も軽やかでクリーミー。定番の「2000」で知られます。</p><p class="en-only">The lightest and creamiest; known for the classic 2000.</p></li><li><b>Grand Cru</b><small class="ja-only">グラン・クリュ</small><p class="ja-only">シャトー・シリーズの流れをくむ、熟成葉による上品な甘み。</p><p class="en-only">Heir to the Château series; aged leaf with a refined sweetness.</p></li><li><b>Aniversario</b><small class="ja-only">アニベルサリオ</small><p class="ja-only">ゆとりのある太めのサイズを中心とした、熟成感のある豊かなブレンド。</p><p class="en-only">Generous, fuller formats with a rich, mature character.</p></li><li><b>Millennium</b><small class="ja-only">ミレニアム</small><p class="ja-only">ホワイトバンドの中でいちばん力強い、深みのあるブレンド。</p><p class="en-only">The fullest White Band blend, with real depth.</p></li></ul></div><div class="dv-col"><div class="dv-ck">BLACK BAND</div><h4 class="ja-only">ブラックバンド</h4><h4 class="en-only">Black Band</h4><p class="ja-only dv-cd">黒い帯の、より濃厚で冒険的なシリーズ。産地の個性を前面に出しています。</p><p class="en-only dv-cd">The black-banded range: bolder and more adventurous, each built around a terroir.</p><ul><li><b>Nicaragua</b><small class="ja-only">ニカラグア</small><p class="ja-only">2013年。ニカラグア産の葉だけで作る、ダビドフ初の試み。</p><p class="en-only">2013. Davidoff's first all-Nicaraguan blend.</p></li><li><b>Escurio</b><small class="ja-only">エスクリオ</small><p class="ja-only">2015年。ブラジル産の葉を加えた、甘くスパイシーな個性。</p><p class="en-only">2015. Brazilian tobacco brings sweetness and spice.</p></li><li><b>Yamasá</b><small class="ja-only">ヤマサ</small><p class="ja-only">2016年。栽培の難しいドミニカ・ヤマサ地区の葉を、長い年月をかけて実らせた一本。</p><p class="en-only">2016. Leaf from the demanding Yamasá region, years in the making.</p></li><li><b>Puro Dominicano</b><small class="ja-only">ピュロ・ドミニカーノ</small><p class="ja-only">2026年。ドミニカ産の葉だけで作る、ブラックバンドの最新作。</p><p class="en-only">2026. The newest Black Band, made entirely from Dominican tobacco.</p></li></ul></div><div class="dv-col"><div class="dv-ck">WINSTON CHURCHILL</div><h4 class="ja-only">ウィンストン・チャーチル</h4><h4 class="en-only">Winston Churchill</h4><p class="ja-only dv-cd">チャーチル首相に着想を得たシリーズ。複数の国の葉を組み合わせた複雑な味わい。</p><p class="en-only dv-cd">Inspired by Sir Winston Churchill; complex blends drawing on several countries.</p><ul><li><b>The Original</b><small class="ja-only">ジ・オリジナル</small><p class="ja-only">多面的な人柄をイメージした、バランスのよいブレンド。</p><p class="en-only">A balanced blend inspired by a many-sided character.</p></li><li><b>The Late Hour</b><small class="ja-only">ザ・レイトアワー</small><p class="ja-only">スコッチ・ウイスキー樽で寝かせた葉を使う、夜のためのシリーズ。</p><p class="en-only">Leaf rested in Scotch whisky casks; made for the evening.</p></li></ul></div><div class="dv-col"><div class="dv-ck">RARE & LIMITED</div><h4 class="ja-only">特別な一本</h4><h4 class="en-only">Rare & Limited</h4><p class="ja-only dv-cd">限られた数だけ作られる、ダビドフの頂点となるシリーズ。</p><p class="en-only dv-cd">Davidoff's pinnacle, made in strictly limited numbers.</p><ul><li><b>Royal Release</b><small class="ja-only">ロイヤル・リリース</small><p class="ja-only">選び抜いた葉を長期熟成させ、熟練の巻き手だけが仕上げる最上級シリーズ。</p><p class="en-only">Long-aged, hand-selected leaf rolled only by the most experienced torcedores.</p></li><li><b>Oro Blanco</b><small class="ja-only">オロ・ブランコ</small><p class="ja-only">ダビドフが「最も特別な葉巻」と位置づける、ごく少量の最高峰。</p><p class="en-only">What Davidoff calls its most exceptional cigar, made in tiny quantities.</p></li><li><b>Zodiac Series</b><small class="ja-only">干支シリーズ</small><p class="ja-only">2013年から毎年発表される、中国の干支にちなんだ限定品。2026年は「午（うま）年」。</p><p class="en-only">An annual Chinese Zodiac edition since 2013; 2026 is the Year of the Horse.</p></li></ul></div></div>
+    <p class="ja-only dv-note">このほか、小型の「エクスキジトス」「プリメロス」や、エクアドル産の特別なラッパーを使った「702シリーズ」などもあります。</p><p class="en-only dv-note">There are also small formats such as Exquisitos and Primeros, and the 702 Series with its special Ecuadorian wrapper.</p>
+
+    <div class="dv-h"><span class="dv-no">05</span><div><div class="dv-k">IN TOKYO</div><h3 class="ja-only">東京のダビドフ</h3><h3 class="en-only">Davidoff in Tokyo</h3></div></div>
+    <p class="ja-only body">日本ではダビドフ・オブ・ジュネーブ・ジャパン株式会社（東京・南青山）が、都内3店舗を運営しています。</p><p class="en-only body">In Japan, Davidoff of Geneva Japan K.K. (Minami-Aoyama, Tokyo) runs three boutiques in the city.</p>
+    <div class="dv-shops"><div class="dv-shop"><div class="dv-sn"><b>Davidoff of Geneva Ginza</b><span class="ja-only dv-tag">ラウンジあり</span><span class="en-only dv-tag">LOUNGE</span></div><small class="ja-only">ダビドフ オブ ジュネーブ 銀座</small><p class="ja-only">ヒュミドールと、購入した葉巻を楽しめるラウンジを備えた旗艦店。</p><p class="en-only">The flagship, with a humidor and a lounge for enjoying cigars bought in store.</p>
+<dl><dt><span class="ja-only">住所</span><span class="en-only">Address</span></dt><dd><span class="ja-only">中央区銀座8-5-6（並木通り）</span><span class="en-only">Ginza 8-5-6, Namiki-dori</span></dd><dt><span class="ja-only">営業時間</span><span class="en-only">Hours</span></dt><dd><span class="ja-only">月〜金 12:00〜20:00／土日祝 12:00〜19:00</span><span class="en-only">Mon–Fri 12:00–20:00 / Sat, Sun & hols 12:00–19:00</span></dd></dl></div><div class="dv-shop"><div class="dv-sn"><b>Davidoff of Geneva Tokyo Midtown</b><span class="ja-only dv-tag dv-tag-o">購入のみ</span><span class="en-only dv-tag dv-tag-o">SHOP ONLY</span></div><small class="ja-only">ダビドフ オブ ジュネーブ 東京ミッドタウン</small><p class="ja-only">ヒュミドールを備えたショップ。店内に喫煙スペースはありません。</p><p class="en-only">A shop with a humidor. No smoking on site.</p>
+<dl><dt><span class="ja-only">住所</span><span class="en-only">Address</span></dt><dd><span class="ja-only">港区赤坂9-7-4 ガレリア 1F</span><span class="en-only">Galleria 1F, Tokyo Midtown, Akasaka 9-7-4</span></dd><dt><span class="ja-only">営業時間</span><span class="en-only">Hours</span></dt><dd><span class="ja-only">11:00〜20:00</span><span class="en-only">11:00–20:00</span></dd></dl></div><div class="dv-shop"><div class="dv-sn"><b>Acanta Boutique, Imperial Hotel</b><span class="ja-only dv-tag dv-tag-o">購入のみ</span><span class="en-only dv-tag dv-tag-o">SHOP ONLY</span></div><small class="ja-only">アカンタブティック 帝国ホテル店</small><p class="ja-only">帝国ホテル本館1階のブティック。店内に喫煙スペースはありません。</p><p class="en-only">A boutique in the Imperial Hotel's Main Building. No smoking on site.</p>
+<dl><dt><span class="ja-only">住所</span><span class="en-only">Address</span></dt><dd><span class="ja-only">千代田区内幸町1-1-1 帝国ホテル本館 1F</span><span class="en-only">Imperial Hotel Tokyo, Main Building 1F</span></dd><dt><span class="ja-only">営業時間</span><span class="en-only">Hours</span></dt><dd><span class="ja-only">11:00〜18:00</span><span class="en-only">11:00–18:00</span></dd></dl></div></div>
+
+    <div class="dv-h"><span class="dv-no">06</span><div><div class="dv-k">AROUND THE WORLD</div><h3 class="ja-only">世界のダビドフ</h3><h3 class="en-only">Around the world</h3></div></div>
+    <div class="dv-two">
+      <p class="ja-only body">世界各地に65の直営店（フラッグシップストア）と、700を超える正規販売店があります。空港の免税店でもおなじみのブランドです。</p><p class="en-only body">Davidoff has 65 flagship stores and satellites worldwide and more than 700 appointed merchants, and is a familiar name in airport duty-free.</p>
+      <div class="dvlondon"><div class="mark">Davidoff of London</div><p class="ja-only">ロンドンのセント・ジェームズ・ストリートに1980年から店を構える「ダビドフ・オブ・ロンドン」は、サハキアン家が営む独立した名店。</p><p class="en-only">On St James's Street since 1980, Davidoff of London is an independent shop run by the Sahakian family.</p></div>
+    </div>
+
+    <div class="dv-h"><span class="dv-no">07</span><div><div class="dv-k">GOOD TO KNOW</div><h3 class="ja-only">知っておきたいこと</h3><h3 class="en-only">Good to know</h3></div></div>
+    <ul class="dv-know">
+      <li><span class="ja-only"><b>葉巻と紙巻きたばこは別会社。</b>ダビドフの紙巻きたばこは2006年から英インペリアル・ブランズ社のもので、葉巻を作るエッティンガー・ダビドフ社とは別の事業です。</span><span class="en-only"><b>Cigars and cigarettes are separate businesses.</b> Davidoff cigarettes have belonged to Imperial Brands since 2006, entirely separate from Oettinger Davidoff, which makes the cigars.</span></li>
+      <li><span class="ja-only"><b>グループのほかのブランド。</b>エッティンガー・ダビドフ社は、アヴォ（AVO）、カマチョ、ジーノ・プラチナムなどの葉巻ブランドも手がけています。</span><span class="en-only"><b>Sister brands.</b> Oettinger Davidoff also owns cigar brands such as AVO, Camacho and Zino Platinum.</span></li>
+      <li><span class="ja-only"><b>「since 1911」の意味。</b>店舗に掲げられる「DAVIDOFF OF GENEVA since 1911」は、一家がジュネーブで店を開いた年にちなんでいます。</span><span class="en-only"><b>“Since 1911”.</b> The “Davidoff of Geneva since 1911” seen on its stores marks the year the family opened its shop in Geneva.</span></li>
+      <li><span class="ja-only"><b>キューバ製ダビドフ。</b>1991年までにキューバでの生産は終わり、当時の葉巻はいまや愛好家の間で希少なコレクターズアイテムです。</span><span class="en-only"><b>Cuban Davidoffs.</b> Cuban production ended by 1991, and those cigars are now rare collector's pieces.</span></li>
+    </ul>
+    <p class="ja-only dv-src">内容は2026年11月時点の公開情報にもとづきます。</p><p class="en-only dv-src">Based on public information as of November 2026.</p>
   </div>
 </section>
 
