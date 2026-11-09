@@ -21,8 +21,24 @@ async function summary(store, event) {
   };
 }
 
+// one-time cleanup requested by the host (2026-11-09): remove the host's own early test entries
+const PURGE_BEFORE = Date.UTC(2026, 10, 9, 6, 30);
+let purged = false;
+async function purge(store) {
+  if (purged) return;
+  purged = true;
+  for (const ev of EVENTS) {
+    const { blobs } = await store.list({ prefix: ev + "/" });
+    for (const bl of blobs) {
+      const r = await store.get(bl.key, { type: "json" });
+      if (r && r.name && r.name.replace(/\s/g, "") === "酒井俊樹" && (r.at || 0) < PURGE_BEFORE) await store.delete(bl.key);
+    }
+  }
+}
+
 export default async (req) => {
   const store = getStore({ name: "rsvp", consistency: "strong" });
+  try { await purge(store); } catch (e) { purged = false; }
   const url = new URL(req.url);
 
   if (req.method === "GET") {
