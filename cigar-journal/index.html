@@ -1126,6 +1126,71 @@ footer.ft .fhost .logo b,footer.ft .fhost .logo b .wd,#mnav .mn-host .fhost .log
 .vol-h .vh-t .vh-1,.vol-h .vh-t .vh-2{display:block}
 .vol-h .vh-t .vh-2{margin-top:2px}
 .nw{display:inline-block;max-width:100%}
+/* ===== refinement: brass accents, weight contrast ===== */
+:root{--brass:#B08D57;--brass-l:#C9A977}
+#mnav .mn-l a{display:grid!important;grid-template-columns:26px 1fr auto;align-items:baseline!important;gap:0 10px}
+#mnav .mn-l .mn-no{font:400 11px "Bodoni Moda",serif;font-style:italic;color:var(--brass);letter-spacing:0}
+#mnav .mn-l small{display:block!important;font:400 10.5px "Zen Old Mincho",serif!important;color:#8a8a8a!important;letter-spacing:.14em!important;text-align:right}
+#mnav .mn-l b{font-weight:600!important;color:#fff}
+#mnav .mn-l a:active b,#mnav .mn-l a:hover b{color:var(--brass-l)}
+#mnav .mn-l a.rv-link b{color:var(--brass-l)}
+#mnav .mn-g{display:flex;align-items:baseline;gap:10px;margin:26px 0 2px;padding-bottom:8px;border-bottom:1px solid rgba(176,141,87,.45)}
+#mnav .mn-g:first-child{margin-top:8px}
+#mnav .mn-g span{font:600 9px "Montserrat",sans-serif;letter-spacing:.4em;color:var(--brass)}
+#mnav .mn-g i{font:400 9.5px "Zen Old Mincho",serif;font-style:normal;letter-spacing:.2em;color:#6f6f6f}
+#mnav .mn-host{border-top-color:rgba(176,141,87,.45)!important}
+/* Davidoff */
+#davidoff .dv-no{color:var(--brass)!important;font-style:italic}
+#davidoff .dv-k{color:var(--brass)!important;font-weight:600}
+#davidoff .dv-h h3{font-weight:600!important}
+#davidoff .dv-tl b{color:var(--brass)!important}
+#davidoff .dv-ck{color:var(--brass)!important;font-weight:600}
+#davidoff .dv-col li b{font-weight:600}
+#davidoff .dvlondon{border-left-color:var(--brass)!important}
+#davidoff .dvlondon .mark{color:var(--brass)!important}
+#davidoff .body.ja-only,#davidoff .dv-two p.ja-only{letter-spacing:.03em!important;font-size:15px!important;line-height:2!important}
+#davidoff .dv-chips{position:sticky;top:58px;z-index:5;display:flex;gap:18px;overflow-x:auto;padding:14px 0 12px;margin-top:20px;background:#f6f4f0;border-bottom:1px solid #0a0a0a;scrollbar-width:none}
+#davidoff .dv-chips::-webkit-scrollbar{display:none}
+#davidoff .dv-chips a{flex:none;font:500 12px "Zen Old Mincho","Montserrat",serif;letter-spacing:.1em;color:#0a0a0a;text-decoration:none}
+#davidoff .dv-chips em{font:400 10px "Bodoni Moda",serif;font-style:italic;color:var(--brass);margin-right:5px}
+#davidoff .dv-next{display:grid;grid-template-columns:1fr auto;align-items:end;margin-top:34px;padding:18px 0;border-top:1px solid #0a0a0a;border-bottom:1px solid #0a0a0a;color:#0a0a0a;text-decoration:none}
+#davidoff .dv-next small{grid-column:1/3;font:600 9px "Montserrat",sans-serif;letter-spacing:.4em;color:var(--brass)}
+#davidoff .dv-next b{font:500 18px "Montserrat",sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-top:8px}
+#davidoff .dv-next span{grid-column:1;font:400 11px "Zen Old Mincho",serif;color:#777;letter-spacing:.14em;margin-top:4px}
+#davidoff .dv-next i{grid-row:2/4;grid-column:2;font-style:normal;color:var(--brass);font-size:20px}
+html{scroll-padding-top:120px}
+/* refinement 2: smaller menu type, amethyst lines */
+:root{--amethyst:#7B5EA7;--amethyst-l:#9C84C4}
+#mnav .mn-l b{font-size:11.5px!important;letter-spacing:.24em!important}
+#mnav .mn-l small{font-size:9.5px!important}
+#mnav .mn-l .mn-no{font-size:10px}
+#mnav .mn-l a{padding:10px 0!important;border-bottom-color:rgba(123,94,167,.22)!important}
+#mnav .mn-g{border-bottom-color:var(--amethyst)!important;margin-top:22px}
+#mnav .mn-g span{font-size:8.5px}
+#mnav .mn-top{border-bottom-color:rgba(123,94,167,.6)!important}
+#mnav .mn-host{border-top-color:var(--amethyst)!important}
+#mnav .mn-host .fh-c,#mnav .mn-host .fh-c a{border-color:rgba(123,94,167,.28)!important}
+#davidoff .dv-h{border-top-color:var(--amethyst)!important}
+#davidoff .dv-chips{border-bottom-color:var(--amethyst)!important}
+#davidoff .dv-next{border-top-color:var(--amethyst)!important;border-bottom-color:var(--amethyst)!important}
+#davidoff .dvlondon{border-left-color:var(--amethyst)!important}
+/* refinement 3: site-wide brass + amethyst */
+.hm .kk,section .kk{color:var(--brass)!important;opacity:1!important;font-weight:600}
+.hm:after{content:"";display:block;width:36px;height:1px;background:var(--amethyst);margin-top:14px}
+#lounges .lg-area{border-bottom-color:var(--amethyst)!important;color:#0a0a0a}
+#lounges .lounge .i{color:var(--brass)!important;font-family:"Bodoni Moda",serif;font-style:italic}
+#lounges .lounge.open b{color:#0a0a0a}
+#lounges .lg-h dt{color:var(--brass)!important}
+#archive .vol{border-top-color:rgba(123,94,167,.55)!important}
+#archive .vol-loc{border-color:var(--brass)!important;color:var(--brass-l)!important}
+#archive .gal-more{border-bottom-color:var(--amethyst-l)!important}
+#archive .gal-more em{color:var(--brass-l)!important}
+.yr{color:var(--brass)!important}
+#history .tl,#history [class*="line"]{border-color:var(--amethyst)!important}
+.origin .c{color:var(--brass)!important}
+#library .lb-m{color:var(--brass)!important}
+#library .lb-c{border-bottom-color:rgba(123,94,167,.25)!important}
+.ft .fh-c,.ft .fh-c a{border-color:rgba(123,94,167,.3)!important}
 </style>
 <style>
 .fpage{padding:120px 0 90px}
@@ -1175,6 +1240,19 @@ footer.ft .fhost .logo b,footer.ft .fhost .logo b .wd,#mnav .mn-host .fhost .log
 .fpage .ft-src{font-size:10.5px;color:#888;margin-top:30px;line-height:1.8}
 .fpage .ft-back{display:inline-block;margin-top:40px;font:600 10px "Montserrat",sans-serif;letter-spacing:.26em;color:#0a0a0a;text-decoration:none;border-bottom:1px solid #0a0a0a;padding-bottom:3px}
 .nw{display:inline-block;max-width:100%}
+.fpage .ft-no,.fpage .ft-k,.fpage .ft-ck,.fpage .ft-yr h4,.fpage .ft-list li>b,.fpage .ft-facts b{color:var(--brass)!important}
+.fpage .ft-no{font-style:italic}
+.fpage .ft-h{border-top-color:var(--amethyst)}
+.fpage .ft-note{border-left-color:var(--amethyst)}
+.fpage .ft-ch li:before{color:var(--brass);font-style:italic}
+.fpage .ft-masters .hm1 b:after{background:var(--brass)}
+.fpage .ft-more{border-bottom-color:var(--amethyst)}
+.fpage .ft-cta{border-color:var(--amethyst)}
+.fpage .ft-nx{display:grid;grid-template-columns:1fr auto;align-items:end;margin-top:40px;padding:18px 0;border-top:1px solid var(--amethyst);border-bottom:1px solid var(--amethyst);color:#0a0a0a;text-decoration:none}
+.fpage .ft-nx small{grid-column:1/3;font:600 9px "Montserrat",sans-serif;letter-spacing:.4em;color:var(--brass)}
+.fpage .ft-nx b{font:500 18px "Montserrat",sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-top:8px}
+.fpage .ft-nx span{grid-column:1;font:400 11px "Zen Old Mincho",serif;color:#777;letter-spacing:.14em;margin-top:4px}
+.fpage .ft-nx i{grid-row:2/4;grid-column:2;font-style:normal;color:var(--brass);font-size:20px}
 @media(max-width:860px){.fpage{padding-top:96px}.fpage .ft-two,.fpage .ft-cards,.fpage .ft-masters,.fpage .ft-ch{grid-template-columns:1fr}.fpage .ft-facts{grid-template-columns:repeat(2,1fr)}.fpage .ft-facts div:nth-child(2){border-right:0}.fpage .ft-facts div:nth-child(-n+2){border-bottom:1px solid #e2e2e2}.fpage .ft-list li{grid-template-columns:1fr}.fpage .ft-yr li{grid-template-columns:96px 1fr}}
 body.en .fpage p{text-align:left}
 </style>
@@ -1227,6 +1305,7 @@ body.en .fpage p{text-align:left}
 <li style="padding:14px 0;border-bottom:1px solid #e2e2e2;font-size:13px;line-height:1.85"><span class="ja-only"><b>アジアからの受賞。</b>香港の「バーティー・シガーラウンジ」は2024年にベストラウンジ（アジア）を受賞。主宰のエリック・ピラスは、銘柄図鑑で紹介している「コンフィデンシアール」の生みの親です。</span><span class="en-only"><b>Winners from Asia.</b> Hong Kong’s Bertie Cigar Lounge was named Best Lounge Asia in 2024. Its owner, Eric Piras, created Confidenciaal, featured in our Vitola Library.</span></li>
 </ul>
 <p class="ja-only ft-src">受賞情報は2026年11月時点でシガージャーナルなどが公開している情報にもとづきます。</p><p class="en-only ft-src">Award information is based on details published by Cigar Journal and others as of November 2026.</p>
+<a class="ft-nx" href="/cigar-masters/"><small>NEXT</small><b>Cigar Masters</b><span>シガーマスターズ</span><i>→</i></a>
 <a class="ft-back" href="/">← THE CIGAR CODE</a>
 </div></section></main>
 <footer class="ft"><div class="wrap2">
@@ -1248,7 +1327,7 @@ body.en .fpage p{text-align:left}
 <g fill="#0a0a0a"><circle cx="55.00" cy="36.00" r="1.15"/><circle cx="54.78" cy="39.95" r="1.15"/><circle cx="54.11" cy="43.82" r="1.15"/><circle cx="53.01" cy="47.55" r="1.15"/><circle cx="51.51" cy="51.07" r="1.15"/><circle cx="49.62" cy="54.30" r="1.15"/><circle cx="47.38" cy="57.19" r="1.15"/><circle cx="44.84" cy="59.69" r="1.15"/><circle cx="42.04" cy="61.75" r="1.15"/><circle cx="39.04" cy="63.33" r="1.15"/><circle cx="35.88" cy="64.39" r="1.15"/><circle cx="32.64" cy="64.93" r="1.15"/><circle cx="29.36" cy="64.93" r="1.15"/><circle cx="26.12" cy="64.39" r="1.15"/><circle cx="22.96" cy="63.33" r="1.15"/><circle cx="19.96" cy="61.75" r="1.15"/><circle cx="17.16" cy="59.69" r="1.15"/><circle cx="14.62" cy="57.19" r="1.15"/><circle cx="12.38" cy="54.30" r="1.15"/><circle cx="10.49" cy="51.07" r="1.15"/><circle cx="8.99" cy="47.55" r="1.15"/><circle cx="7.89" cy="43.82" r="1.15"/><circle cx="7.22" cy="39.95" r="1.15"/><circle cx="7.00" cy="36.00" r="1.15"/><circle cx="7.22" cy="32.05" r="1.15"/><circle cx="7.89" cy="28.18" r="1.15"/><circle cx="8.99" cy="24.45" r="1.15"/><circle cx="10.49" cy="20.93" r="1.15"/><circle cx="12.38" cy="17.70" r="1.15"/><circle cx="14.62" cy="14.81" r="1.15"/><circle cx="17.16" cy="12.31" r="1.15"/><circle cx="19.96" cy="10.25" r="1.15"/><circle cx="22.96" cy="8.67" r="1.15"/><circle cx="26.12" cy="7.61" r="1.15"/><circle cx="29.36" cy="7.07" r="1.15"/><circle cx="32.64" cy="7.07" r="1.15"/><circle cx="35.88" cy="7.61" r="1.15"/><circle cx="39.04" cy="8.67" r="1.15"/><circle cx="42.04" cy="10.25" r="1.15"/><circle cx="44.84" cy="12.31" r="1.15"/><circle cx="47.38" cy="14.81" r="1.15"/><circle cx="49.62" cy="17.70" r="1.15"/><circle cx="51.51" cy="20.93" r="1.15"/><circle cx="53.01" cy="24.45" r="1.15"/><circle cx="54.11" cy="28.18" r="1.15"/><circle cx="54.78" cy="32.05" r="1.15"/></g>
 <text x="31" y="41" text-anchor="middle" font-family="Pinyon Script,cursive" font-size="16" fill="#0a0a0a">Menu</text>
 </svg></button>
-<nav id="mnav" aria-hidden="true"><div class="mn-in"><div class="mn-top"><span>THE CIGAR CODE</span><button id="mclose" type="button" aria-label="Close">CLOSE</button></div><div class="mn-l"><a href="/#top"><b><span class="wd">Next Gathering</span></b><small>次回の会</small></a><a href="/#rsvp"><b><span class="wd">RSVP</span></b><small>ご出欠の回答</small></a><a href="/#about"><b><span class="wd">About</span></b><small>会について</small></a><a href="/#archive"><b><span class="wd">Archive</span></b><small>これまでの会</small></a><a href="/#lounges"><b><span class="wd">Lounges</span></b><small>都内のラウンジ</small></a><a href="/#davidoff"><b><span class="wd">Davidoff</span></b><small>ダビドフ</small></a><a href="/#map"><b><span class="wd">Origins</span></b><small>葉巻の世界地図</small></a><a href="/#notes"><b><span class="wd">Cigar Notes</span></b><small>葉巻の手帖</small></a><a href="/#library"><b><span class="wd">Vitola Library</span></b><small>銘柄図鑑</small></a><a href="/#history"><b><span class="wd">History</span></b><small>葉巻の歴史</small></a><a href="/cigar-journal/"><b><span class="wd">Cigar Journal</span></b><small>シガージャーナル</small></a><a href="/cigar-masters/"><b><span class="wd">Cigar Masters</span></b><small>シガーマスターズ</small></a></div><div class="mn-host">  <div class="fhost">
+<nav id="mnav" aria-hidden="true"><div class="mn-in"><div class="mn-top"><span>THE CIGAR CODE</span><button id="mclose" type="button" aria-label="Close">CLOSE</button></div><div class="mn-l"><div class="mn-g"><span>THE GATHERING</span><i>集い</i></div><a href="/#top"><em class="mn-no">01</em><b><span class="wd">Next Gathering</span></b><small>次回の会</small></a><a href="/#rsvp"><em class="mn-no">02</em><b><span class="wd">RSVP</span></b><small>ご出欠の回答</small></a><a href="/#about"><em class="mn-no">03</em><b><span class="wd">About</span></b><small>会について</small></a><a href="/#archive"><em class="mn-no">04</em><b><span class="wd">Archive</span></b><small>これまでの会</small></a><div class="mn-g"><span>PLACES</span><i>場所</i></div><a href="/#lounges"><em class="mn-no">05</em><b><span class="wd">Lounges</span></b><small>都内のラウンジ</small></a><a href="/#davidoff"><em class="mn-no">06</em><b><span class="wd">Davidoff</span></b><small>ダビドフ</small></a><div class="mn-g"><span>LEARN</span><i>学ぶ</i></div><a href="/#map"><em class="mn-no">07</em><b><span class="wd">Origins</span></b><small>葉巻の世界地図</small></a><a href="/#notes"><em class="mn-no">08</em><b><span class="wd">Cigar Notes</span></b><small>葉巻の手帖</small></a><a href="/#library"><em class="mn-no">09</em><b><span class="wd">Vitola Library</span></b><small>銘柄図鑑</small></a><a href="/#history"><em class="mn-no">10</em><b><span class="wd">History</span></b><small>葉巻の歴史</small></a><div class="mn-g"><span>FEATURES</span><i>特集</i></div><a href="/cigar-journal/"><em class="mn-no">11</em><b><span class="wd">Cigar Journal</span></b><small>シガージャーナル</small></a><a href="/cigar-masters/"><em class="mn-no">12</em><b><span class="wd">Cigar Masters</span></b><small>シガーマスターズ</small></a></div><div class="mn-host">  <div class="fhost">
     <div class="logo"><b><span class="wd">THE CIGAR CODE</span></b></div>
     <div class="fh-row"><span class="fh-k"><span class="ja-only">主宰</span><span class="en-only">Host</span></span><span class="fh-n"><span class="ja-only">酒井 俊樹</span><span class="en-only">Toshiki Sakai</span></span></div>
     <div class="fh-t ja-only">ボヴェ1822ジャパン株式会社 代表<br>合同会社ワールドタイムプレイス 代表</div>
