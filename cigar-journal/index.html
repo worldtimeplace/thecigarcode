@@ -1182,7 +1182,9 @@ html{scroll-padding-top:120px}
 #lounges .lounge.open b{color:#0a0a0a}
 #lounges .lg-h dt{color:var(--brass)!important}
 #archive .vol{border-top-color:rgba(123,94,167,.55)!important}
-#archive .vol-loc{border-color:var(--brass)!important;color:var(--brass-l)!important}
+#archive .vol-loc{display:inline-block;vertical-align:middle;margin:-3px 0 0 14px;padding:2px 9px;line-height:1.6;letter-spacing:.2em;border-color:rgba(255,255,255,.32)!important;color:rgba(255,255,255,.82)!important}
+#archive .hm:after{display:none}
+#archive .gal-more{border-bottom:0!important}
 #archive .gal-more{border-bottom-color:var(--amethyst-l)!important}
 #archive .gal-more em{color:var(--brass-l)!important}
 .yr{color:var(--brass)!important}
@@ -1191,6 +1193,11 @@ html{scroll-padding-top:120px}
 #library .lb-m{color:var(--brass)!important}
 #library .lb-c{border-bottom-color:rgba(123,94,167,.25)!important}
 .ft .fh-c,.ft .fh-c a{border-color:rgba(123,94,167,.3)!important}
+#archive a.vh-link{display:block;color:inherit;text-decoration:none}
+#archive a.vh-link .vh-2{display:inline-block!important;border-bottom:1px solid rgba(201,169,119,.55);padding-bottom:2px}
+#archive a.vh-link .vh-2:after{content:" →";color:var(--brass-l);font-family:"Montserrat",sans-serif;font-size:.9em}
+#archive a.vh-link:active .vh-2{color:#fff}
+body:not(.en) #archive a.en-only,body.en #archive a.ja-only{display:none!important}
 </style>
 <style>
 .fpage{padding:120px 0 90px}
