@@ -862,6 +862,35 @@ body{position:relative}
 #lounges .lg-h{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:2px 0 14px;font-size:12.5px;line-height:1.7}
 #lounges .lg-h dt{color:#888;letter-spacing:.12em;font-size:11px;white-space:nowrap}
 #lounges .lg-h dd{margin:0;color:#111}
+
+#lx{position:fixed;inset:0;z-index:120;pointer-events:none;visibility:hidden}
+#lx.on{pointer-events:auto;visibility:visible}
+#lx .lx-bg{position:absolute;inset:0;background:rgba(6,6,6,.97);opacity:0;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:opacity .9s cubic-bezier(.22,.61,.36,1)}
+#lx.on .lx-bg{opacity:1}
+#lx .lx-fig{position:absolute;inset:0;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:96px 18px 96px}
+#lx .lx-media{position:relative;will-change:transform;transform-origin:0 0}
+#lx .lx-media img,#lx .lx-media video{display:block;max-width:min(84vw,1100px);max-height:calc(100vh - 240px);width:auto;height:auto;box-shadow:0 30px 80px rgba(0,0,0,.6);filter:grayscale(1) contrast(1.05) brightness(.92)!important;transition:filter 1.8s cubic-bezier(.22,.61,.36,1) .35s,opacity .6s ease}
+#lx .lx-media.color img,#lx .lx-media.color video{filter:grayscale(0) contrast(1.02) brightness(1)!important}
+#lx .lx-media::after{content:"";position:absolute;inset:-10px;border:1px solid rgba(255,255,255,.18);opacity:0;transition:opacity 1.2s ease .8s;pointer-events:none}
+#lx.on .lx-media::after{opacity:1}
+#lx .lx-cap{margin-top:30px;display:flex;flex-direction:column;align-items:center;gap:10px;color:#cfcfcf;font:400 10.5px "Montserrat",sans-serif;letter-spacing:.32em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:opacity 1s ease .9s,transform 1s ease .9s;text-align:center}
+#lx.on .lx-cap{opacity:1;transform:none}
+#lx .lx-ct{color:#8a8a8a;font-size:9.5px;letter-spacing:.4em}
+#lx .lx-ct:before{content:"";display:block;width:28px;height:1px;background:rgba(255,255,255,.35);margin:0 auto 10px}
+#lx .lx-x{position:absolute;top:22px;right:20px;z-index:2;background:none;border:0;color:#e8e8e8;font:400 10px "Montserrat",sans-serif;letter-spacing:.38em;display:flex;align-items:center;gap:12px;cursor:pointer;opacity:0;transition:opacity .8s ease .6s;padding:10px}
+#lx.on .lx-x{opacity:1}
+#lx .lx-x i{position:relative;width:18px;height:18px}
+#lx .lx-x i:before,#lx .lx-x i:after{content:"";position:absolute;left:0;top:50%;width:18px;height:1px;background:#e8e8e8;transform:rotate(45deg)}
+#lx .lx-x i:after{transform:rotate(-45deg)}
+#lx .lx-nav{position:absolute;top:50%;z-index:2;width:56px;height:80px;margin-top:-40px;background:none;border:0;cursor:pointer;opacity:0;transition:opacity .8s ease .9s}
+#lx.on .lx-nav{opacity:.75}
+#lx .lx-nav:hover{opacity:1}
+#lx .lx-prev{left:4px}#lx .lx-next{right:4px}
+#lx .lx-nav i{display:block;width:14px;height:14px;margin:auto;border-left:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;transform:rotate(45deg)}
+#lx .lx-next i{transform:rotate(-135deg)}
+#lx .lx-media.swap{opacity:0;transition:opacity .45s ease}
+@media(max-width:600px){#lx .lx-nav{display:none}}
+body.lx-lock{overflow:hidden}
 </style>
 </head>
 <body class="locked">
@@ -1019,6 +1048,10 @@ body{position:relative}
     <a class="st" href="#map"><div class="meta"><span>Guide</span><span>4 Min Read</span></div><h3 class="ja-only">産地の地図</h3><h3 class="en-only">The map of origins</h3><p class="ja-only">キューバ、ドミニカ、ニカラグア、ホンジュラス。</p><p class="en-only">Cuba, the Dominican Republic, Nicaragua, Honduras.</p><span class="more">Keep reading</span></a>
   </div>
 </section>
+<div id="lx" aria-hidden="true"><div class="lx-bg"></div>
+<button class="lx-x" type="button" aria-label="Close"><span>CLOSE</span><i></i></button>
+<button class="lx-nav lx-prev" type="button" aria-label="Previous"><i></i></button><button class="lx-nav lx-next" type="button" aria-label="Next"><i></i></button>
+<figure class="lx-fig"><div class="lx-media"></div><figcaption class="lx-cap"><span class="lx-ev"></span><span class="lx-ct"></span></figcaption></figure></div>
 <div class="lb" id="lb" hidden><button class="lb-x" id="lbX" type="button">CLOSE</button><div class="lb-in" id="lbIn"></div></div>
 
 
@@ -1739,9 +1772,7 @@ q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();ul.quer
   var lb=document.getElementById('lb'),inn=document.getElementById('lbIn');
   function close(){lb.hidden=true;inn.innerHTML='';document.body.style.overflow='';}
   document.getElementById('lbX').onclick=close;lb.addEventListener('click',function(e){if(e.target===lb)close()});
-  document.querySelectorAll('.g').forEach(function(g){g.addEventListener('click',function(){
-    inn.innerHTML=g.dataset.v?'<video src="'+g.dataset.v+'" controls autoplay playsinline></video>':'<img src="'+g.dataset.i+'" alt="">';
-    lb.hidden=false;document.body.style.overflow='hidden';})});
+  /* gallery handled by luxury lightbox */
   var v=document.querySelector('.fh-main');if(v){var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){});}
 })();
 </script>
@@ -1773,5 +1804,32 @@ fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.s
 load();setInterval(function(){if(!document.hidden)load()},30000);if(location.hash==='#rsvp')op();})();</script>
 <script>(function(){var s=document.getElementById('library');if(!s)return;[].forEach.call(s.querySelectorAll('.lb-tabs button'),function(b){b.onclick=function(){[].forEach.call(s.querySelectorAll('.lb-tabs button'),function(x){x.classList.toggle('on',x===b)});[].forEach.call(s.querySelectorAll('.lb-p'),function(p){p.hidden=p.getAttribute('data-p')!==b.getAttribute('data-t')})}})})();</script>
 <script>(function(){var t=document.getElementById('lounge-capitol');if(!t)return;document.querySelectorAll('a[href="#lounge-capitol"]').forEach(function(a){a.addEventListener('click',function(){t.classList.remove('flash');void t.offsetWidth;setTimeout(function(){t.classList.add('flash');setTimeout(function(){t.classList.remove('flash')},4200)},500)})})})();</script>
+<script>(function(){
+var lx=document.getElementById('lx');if(!lx)return;var M=lx.querySelector('.lx-media'),EV=lx.querySelector('.lx-ev'),CT=lx.querySelector('.lx-ct');
+var list=[],idx=0,src=null,busy=false,E='cubic-bezier(.22,.61,.36,1)';
+function ev(g){var v=g.closest('.vol');if(!v)return'';var b=v.querySelector('.vol-h b'),sp=v.querySelector('.vol-h span.en-only')||v.querySelector('.vol-h span');return (b?b.textContent:'')+(sp?'  ·  '+sp.textContent.split('·')[0].trim():'')}
+function el(g){var x;if(g.dataset.v){x=document.createElement('video');x.src=g.dataset.v;x.controls=true;x.autoplay=true;x.playsInline=true;x.setAttribute('playsinline','');}else{x=new Image();x.src=g.dataset.i;x.alt='';}return x}
+function ready(x,cb){if(x.tagName==='VIDEO'){if(x.readyState>=1)cb();else{x.addEventListener('loadedmetadata',cb,{once:true});setTimeout(cb,1500)}}else{if(x.complete&&x.naturalWidth)cb();else{x.onload=cb;x.onerror=cb}}}
+function flipFrom(rect){var r=M.getBoundingClientRect();if(!r.width)return;var sx=rect.width/r.width,sy=rect.height/r.height,s=Math.max(sx,sy);
+ M.style.transition='none';M.style.transform='translate('+(rect.left-r.left)+'px,'+(rect.top-r.top)+'px) scale('+s+')';M.style.opacity='.6';M.getBoundingClientRect();
+ M.style.transition='transform 1.05s '+E+',opacity .8s ease';M.style.transform='none';M.style.opacity='1';}
+function show(i,first){idx=(i+list.length)%list.length;var g=list[idx];src=g;var x=el(g);
+ EV.textContent=ev(g);CT.textContent=String(idx+1).padStart(2,'0')+' / '+String(list.length).padStart(2,'0');
+ var go=function(){M.innerHTML='';M.appendChild(x);M.classList.remove('color','swap');
+   if(first){var t=g.querySelector('img');flipFrom((t||g).getBoundingClientRect());}
+   requestAnimationFrame(function(){requestAnimationFrame(function(){M.classList.add('color')})});busy=false;};
+ if(first){ready(x,go)}else{M.classList.add('swap');setTimeout(function(){ready(x,go)},420)}}
+function open(g){if(busy)return;busy=true;var v=g.closest('.gal');list=[].slice.call(v.querySelectorAll('.g'));
+ lx.classList.add('on');lx.setAttribute('aria-hidden','false');document.body.classList.add('lx-lock');show(list.indexOf(g),true)}
+function close(){if(!lx.classList.contains('on'))return;var t=src&&src.querySelector('img');var vid=M.querySelector('video');if(vid)vid.pause();
+ if(t){var a=t.getBoundingClientRect(),r=M.getBoundingClientRect();if(r.width&&a.width){var s=Math.max(a.width/r.width,a.height/r.height);M.classList.remove('color');M.style.transition='transform .8s '+E+',opacity .8s ease';M.style.transform='translate('+(a.left-r.left)+'px,'+(a.top-r.top)+'px) scale('+s+')';M.style.opacity='0';}}
+ lx.classList.remove('on');lx.setAttribute('aria-hidden','true');document.body.classList.remove('lx-lock');setTimeout(function(){M.innerHTML='';M.style.cssText=''},850)}
+document.addEventListener('click',function(e){var g=e.target.closest&&e.target.closest('.gal .g');if(g){e.preventDefault();e.stopImmediatePropagation();open(g)}},true);
+lx.querySelector('.lx-x').onclick=close;lx.querySelector('.lx-bg').onclick=close;lx.querySelector('.lx-fig').addEventListener('click',function(e){if(e.target===this)close()});
+lx.querySelector('.lx-prev').onclick=function(){show(idx-1)};lx.querySelector('.lx-next').onclick=function(){show(idx+1)};
+document.addEventListener('keydown',function(e){if(!lx.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowRight')show(idx+1);if(e.key==='ArrowLeft')show(idx-1)});
+var sx=0,sy=0;lx.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+lx.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))show(idx+(dx<0?1:-1));else if(dy>90&&Math.abs(dy)>Math.abs(dx))close()},{passive:true});
+})();</script>
 </body>
 </html>
