@@ -975,6 +975,12 @@ body.lx-lock{overflow:hidden}
 .size .stick::after{width:calc(var(--h)*.62)!important;min-width:16px}
 .size .stick::before{width:calc(var(--h)*.16)!important}
 .size .stickbox{display:flex;align-items:center;min-height:40px}
+.size .stick::before{content:none!important;display:none!important}
+.size .stick{border-radius:calc(var(--h)/2) 1.5px 1.5px calc(var(--h)/2)!important}
+.size .stick::after{left:15%!important;width:calc(var(--h)*.72)!important;min-width:18px;background:
+ linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0) 35%,rgba(0,0,0,0) 65%,rgba(60,40,10,.28)),
+ linear-gradient(90deg,#a8843f 0,#e3c77a 7%,#b8913f 12%,#f4ead2 12%,#f7efdc 50%,#f4ead2 88%,#b8913f 88%,#e3c77a 93%,#a8843f 100%)!important;
+ box-shadow:inset 0 0 0 .5px rgba(120,90,30,.35)}
 </style>
 </head>
 <body class="locked">
