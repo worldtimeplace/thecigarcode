@@ -915,6 +915,30 @@ body.lx-lock{overflow:hidden}
 .ft .fh-c a:hover i{transform:translate(2px,-2px);color:#fff}
 .ft .fb{margin-top:18px!important;padding-top:10px!important;font-size:9px!important;flex-direction:column!important;gap:2px!important;text-align:left!important;align-items:flex-start!important}
 .ft .fb span{text-align:left!important}
+/* map: selected origin glows & blinks */
+#map .pin .rg{fill:none;stroke:#b0832f;stroke-width:3;opacity:0;pointer-events:none;transform-box:fill-box;transform-origin:center}
+#map .pin.on .rg{animation:mpRing 1.6s ease-out infinite}
+#map .pin.on .rg2{animation-delay:.8s}
+#map .pin.on .core{fill:#b0832f!important;stroke:#fff!important;stroke-width:2.5!important;transform-box:fill-box;transform-origin:center;transform:scale(1.5)}
+#map .pin.on.fl .core{animation:mpBlink .45s ease-in-out 4}
+#map .pin.on text{fill:#9a7432!important;font-weight:700!important}
+#map .pin.on.fl text{animation:mpTxt .45s ease-in-out 4}
+#map .boxr.fl{animation:mpBox .45s ease-in-out 4;stroke-width:2.5}
+#map .chip.on{background:#0a0a0a!important;color:#fff!important;border-color:#0a0a0a!important}
+#map .chip.on::before{background:#d4a24c!important;border-color:#d4a24c!important;box-shadow:0 0 0 3px rgba(212,162,76,.35)}
+#map .chip.on.fl{animation:mpChip .45s ease-in-out 3}
+@keyframes mpRing{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+@keyframes mpBlink{0%,100%{opacity:1;transform:scale(1.5)}50%{opacity:.15;transform:scale(2.1)}}
+@keyframes mpTxt{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes mpBox{0%,100%{stroke-opacity:1}50%{stroke-opacity:.1}}
+@keyframes mpChip{0%,100%{background:#0a0a0a}50%{background:#9a7432}}
+#map .pin{transition:opacity .4s}
+#map .pin:not(.on){opacity:.4}
+#map .pin.on .rg{stroke-width:4.5!important}
+#map .pin.on .core{transform:scale(1.9)!important;filter:drop-shadow(0 0 6px rgba(176,131,47,.9))}
+#map .pin.on text{font-size:23px!important;fill:#7a5716!important}
+@keyframes mpBlink{0%,100%{opacity:1}50%{opacity:.1}}
+@keyframes mpRing{0%{transform:scale(.6);opacity:1}100%{transform:scale(3.2);opacity:0}}
 </style>
 </head>
 <body class="locked">
@@ -1633,11 +1657,11 @@ body.lx-lock{overflow:hidden}
   var COL={h:'#9a7432',n:'#0a0a0a',w:'#0a0a0a'};var C_KEYS=['cuba','dr','nic','hon','mex'];
   function pinSvg(id,x,y,r,label,lx){var p=PINS[id];
     return '<g class="pin '+p.t+'" data-pin="'+id+'" style="color:'+COL[p.t]+'"><circle class="halo" cx="'+x+'" cy="'+y+'" r="'+r*2+'"/><circle class="core" cx="'+x+'" cy="'+y+'" r="'+r+'"/>'+
-      '<circle cx="'+x+'" cy="'+y+'" r="'+(r*3.2)+'" fill="transparent"/>'+(label?'<text x="'+(x+(lx||r+6))+'" y="'+(y+5)+'"'+(lx<0?' text-anchor="end"':'')+'>'+label+'</text>':'')+'</g>';}
+      '<circle class="rg" cx="'+x+'" cy="'+y+'" r="'+(r*1.9)+'"/><circle class="rg rg2" cx="'+x+'" cy="'+y+'" r="'+(r*1.9)+'"/><circle cx="'+x+'" cy="'+y+'" r="'+(r*3.2)+'" fill="transparent"/>'+(label?'<text x="'+(x+(lx||r+6))+'" y="'+(y+5)+'"'+(lx<0?' text-anchor="end"':'')+'>'+label+'</text>':'')+'</g>';}
   var wm=document.getElementById('worldMap'),W=MAP.world;
   wm.setAttribute('viewBox','0 0 '+W.w+' '+W.h);
   var s='<path d="'+W.sphere+'" fill="#e7e2d7" stroke="#cfc8b9"/><path class="land" d="'+W.land+'"/>';
-  var bx=W.box;s+='<rect class="boxr" x="'+bx[0]+'" y="'+bx[1]+'" width="'+bx[2]+'" height="'+bx[3]+'"/>';
+  var bx=W.box;s+='<rect class="boxr" id="carBox" x="'+bx[0]+'" y="'+bx[1]+'" width="'+bx[2]+'" height="'+bx[3]+'"/>';
   Object.keys(W.pts).forEach(function(k){var q=W.pts[k];
     if(C_KEYS.indexOf(k)>=0){s+='<circle cx="'+q[0]+'" cy="'+q[1]+'" r="2.6" fill="'+COL[PINS[k].t]+'"/>';return;}
     s+=pinSvg(k,q[0],q[1],5,PINS[k].k.toUpperCase(),k==='ecu'||k==='ct'?-12:12);});
@@ -1650,13 +1674,17 @@ body.lx-lock{overflow:hidden}
   Object.keys(C.pts).forEach(function(k){var q=C.pts[k];var o=off[k];
     s+=pinSvg(k,q[0],q[1],7,PINS[k].k.toUpperCase(),o[0]).replace('y="'+(q[1]+5)+'"','y="'+(q[1]+5+o[1])+'"');});
   cm.innerHTML=s;
-  var info=document.getElementById('pinInfo'),cur='cuba';
+  var info=document.getElementById('pinInfo'),cur='cuba',fx=false;
   var chips=document.getElementById('pinChips');
-  Object.keys(PINS).forEach(function(k){var b=document.createElement('button');b.type='button';b.dataset.pin=k;b.className='chip '+PINS[k].t;b.textContent=PINS[k].k;b.onclick=function(){showPin(k)};chips.appendChild(b);});
+  Object.keys(PINS).forEach(function(k){var b=document.createElement('button');b.type='button';b.dataset.pin=k;b.className='chip '+PINS[k].t;b.textContent=PINS[k].k;b.onclick=function(){fx=true;showPin(k)};chips.appendChild(b);});
   function showPin(id){cur=id;var p=PINS[id],t=p[lang()];
     info.innerHTML='<div class="k">'+p.k+'</div><b>'+t[0]+'</b><p>'+t[1]+'</p>';
-    document.querySelectorAll('.pin,.chip').forEach(function(g){g.classList.toggle('on',g.dataset.pin===id)});}
-  document.querySelectorAll('.pin').forEach(function(g){g.addEventListener('click',function(){showPin(g.dataset.pin)})});
+    document.querySelectorAll('.pin,.chip').forEach(function(g){g.classList.remove('on','fl');if(g.dataset.pin===id){void g.getBoundingClientRect();g.classList.add('on');if(fx)g.classList.add('fl');}});
+    var bxe=document.getElementById('carBox');if(bxe){bxe.classList.remove('fl');if(fx&&C_KEYS.indexOf(id)>=0){void bxe.getBoundingClientRect();bxe.classList.add('fl');}}
+    if(fx){var vis=[].filter.call(document.querySelectorAll('.pin[data-pin="'+id+'"]'),function(g){return g.getBoundingClientRect().width>0});var g0=vis[0];
+      if(g0){var r=g0.getBoundingClientRect();if(r.top<90||r.bottom>innerHeight-60){window.scrollBy({top:r.top-innerHeight*0.35,behavior:'smooth'});}}}
+    fx=false;}
+  document.querySelectorAll('.pin').forEach(function(g){g.addEventListener('click',function(){fx=true;showPin(g.dataset.pin)})});
   showPin('cuba');
   document.getElementById('bJa').addEventListener('click',function(){showPin(cur);renderPhase(true)});
   document.getElementById('bEn').addEventListener('click',function(){showPin(cur);renderPhase(true)});
