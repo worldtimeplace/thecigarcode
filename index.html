@@ -1907,7 +1907,7 @@ footer.ft .fhost .logo b,footer.ft .fhost .logo b .wd,#mnav .mn-host .fhost .log
   window.scrollTo(0,0);
   function end(ev){if(ev){ev.preventDefault();ev.stopPropagation();}if(gone)return;gone=true;window.scrollTo(0,0);el.classList.add('out');document.body.classList.remove('locked');setTimeout(function(){el.remove();window.scrollTo(0,0)},1600);}
   requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('on')})});
-  setTimeout(function(){el.classList.add('red')},4300);
+  setTimeout(function(){el.classList.add('red')},4000);
   (function(){var cv=document.getElementById('smk');if(!cv||!cv.getContext)return;var cx=cv.getContext('2d'),dpr=Math.min(window.devicePixelRatio||1,2),W,H;
     function rs(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}rs();window.addEventListener('resize',rs);
     function mk(n,soft){var c=document.createElement('canvas');c.width=c.height=256;var g=c.getContext('2d');
