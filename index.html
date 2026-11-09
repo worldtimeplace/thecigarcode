@@ -1113,6 +1113,12 @@ body.en #davidoff p{text-align:left}
 #mnav .mn-host{margin-top:32px!important;padding-top:20px!important}
 footer.ft .fhost .logo b,footer.ft .fhost .logo b .wd,#mnav .mn-host .fhost .logo b,#mnav .mn-host .fhost .logo b .wd{font-size:12px!important;color:#fff!important;opacity:1!important}
 #mnav .mn-host{border-top:0!important;margin-top:28px!important;padding-top:0!important}
+/* archive: show first row, rest behind SEE MORE */
+.gal.clip .g:nth-child(n+5){display:none!important}
+.gal-more{display:flex;align-items:center;gap:10px;margin:14px 0 0;background:none;border:0;padding:4px 0;cursor:pointer;color:#fff;font:600 10px "Montserrat","Zen Old Mincho",sans-serif;letter-spacing:.28em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.6)}
+.gal-more em{font-style:normal;font-weight:400;letter-spacing:.1em;color:#9a9a9a}
+.gal-more i{font-style:normal;display:inline-block;transition:transform .3s}
+.gal-more.open i{transform:rotate(180deg)}
 </style>
 </head>
 <body class="locked">
@@ -2155,5 +2161,8 @@ lx.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx
 <script>(function(){var L=document.querySelectorAll('#lounges .lounge');[].forEach.call(L,function(el){el.addEventListener('click',function(e){if(e.target.closest('a'))return;el.classList.toggle('open')})});
 document.querySelectorAll('a[href="#lounge-capitol"]').forEach(function(a){a.addEventListener('click',function(){var t=document.getElementById('lounge-capitol');if(t)t.classList.add('open')})});})();</script>
 <script>(function(){var q=document.getElementById('habSearch');function u(){if(q)q.placeholder=document.body.classList.contains('en')?'Search brands':'銘柄を探す'}u();['bJa','bEn'].forEach(function(i){var b=document.getElementById(i);if(b)b.addEventListener('click',function(){setTimeout(u,0)})});})();</script>
+<script>(function(){[].forEach.call(document.querySelectorAll('.vol .gal'),function(g){var n=g.querySelectorAll('.g').length;if(n<=4)return;g.classList.add('clip');var b=document.createElement('button');b.type='button';b.className='gal-more';
+function t(){var o=!g.classList.contains('clip');b.classList.toggle('open',o);b.innerHTML=o?'<span class="ja-only">閉じる</span><span class="en-only">Show less</span><i>↓</i>':'<span class="ja-only">もっと見る</span><span class="en-only">See more</span><em>+'+(n-4)+'</em><i>↓</i>'}
+b.onclick=function(){var o=g.classList.contains('clip');g.classList.toggle('clip');t();if(!o){var r=g.getBoundingClientRect();if(r.top<0)window.scrollBy(0,r.top-90)}};t();g.parentNode.insertBefore(b,g.nextSibling)})})();</script>
 </body>
 </html>
