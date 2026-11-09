@@ -7,6 +7,9 @@
 <link rel="apple-touch-icon" href="/media/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/media/icon-192.png">
 <link rel="icon" type="image/png" sizes="64x64" href="/media/favicon-64.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="THE CIGAR CODE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="THE CIGAR CODE">
@@ -1119,6 +1122,11 @@ footer.ft .fhost .logo b,footer.ft .fhost .logo b .wd,#mnav .mn-host .fhost .log
 .gal-more em{font-style:normal;font-weight:400;letter-spacing:.1em;color:#9a9a9a}
 .gal-more i{font-style:normal;display:inline-block;transition:transform .3s}
 .gal-more.open i{transform:rotate(180deg)}
+/* pull to refresh */
+#ptr{position:fixed;left:50%;top:0;z-index:120;transform:translate(-50%,-60px);display:flex;align-items:center;gap:8px;padding:9px 16px;background:#0a0a0a;color:#fff;font:600 10px "Montserrat","Zen Old Mincho",sans-serif;letter-spacing:.2em;border:1px solid rgba(255,255,255,.3);pointer-events:none;opacity:0;transition:opacity .2s}
+#ptr i{display:inline-block;width:12px;height:12px;border:1.5px solid #fff;border-top-color:transparent;border-radius:50%}
+#ptr.go i{animation:ptrs .8s linear infinite}
+@keyframes ptrs{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body class="locked">
@@ -2123,7 +2131,7 @@ fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.s
 .catch(function(){er.textContent=en()?'Could not send. Please try again.':'送信できませんでした。もう一度お試しください。'}).then(function(){$('rvSend').disabled=false})};
 $('rvCancel').onclick=function(){var m=ld(),er=$('rvErr');if(!m||!m.id)return;if(!confirm(en()?'Cancel your reply?':'回答を取り消しますか？'))return;var c=$('rvCancel');c.disabled=true;
 fetch(API,{method:'DELETE',headers:{'content-type':'application/json'},body:JSON.stringify({event:EV,id:m.id})}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){try{localStorage.removeItem(K)}catch(_){}render(d);$('rvMe').hidden=true;$('rvName').value='';$('rvCo').value='';$('rvNum').value='1';att='';[].forEach.call(v.querySelectorAll('.rv-ch button'),function(b){b.classList.remove('sel')});$('rvNumL').style.display='';er.textContent=en()?'Your reply has been cancelled.':'回答を取り消しました。'}).catch(function(){er.textContent=en()?'Could not cancel. Please try again.':'取り消せませんでした。もう一度お試しください。'}).then(function(){c.disabled=false})};
-load();setInterval(function(){if(!document.hidden)load()},30000);if(location.hash==='#rsvp')op();})();</script>
+load();setInterval(function(){if(!document.hidden)load()},30000);window.addEventListener('tcc-refresh',load);if(location.hash==='#rsvp')op();})();</script>
 <script>(function(){var s=document.getElementById('library');if(!s)return;[].forEach.call(s.querySelectorAll('.lb-tabs button'),function(b){b.onclick=function(){[].forEach.call(s.querySelectorAll('.lb-tabs button'),function(x){x.classList.toggle('on',x===b)});[].forEach.call(s.querySelectorAll('.lb-p'),function(p){p.hidden=p.getAttribute('data-p')!==b.getAttribute('data-t')})}})})();</script>
 <script>(function(){var t=document.getElementById('lounge-capitol');if(!t)return;document.querySelectorAll('a[href="#lounge-capitol"]').forEach(function(a){a.addEventListener('click',function(){t.classList.remove('flash');void t.offsetWidth;setTimeout(function(){t.classList.add('flash');setTimeout(function(){t.classList.remove('flash')},4200)},500)})})})();</script>
 <script>(function(){
@@ -2164,5 +2172,17 @@ document.querySelectorAll('a[href="#lounge-capitol"]').forEach(function(a){a.add
 <script>(function(){[].forEach.call(document.querySelectorAll('.vol .gal'),function(g){var n=g.querySelectorAll('.g').length;if(n<=4)return;g.classList.add('clip');var b=document.createElement('button');b.type='button';b.className='gal-more';
 function t(){var o=!g.classList.contains('clip');b.classList.toggle('open',o);b.innerHTML=o?'<span class="ja-only">閉じる</span><span class="en-only">Show less</span><i>↓</i>':'<span class="ja-only">もっと見る</span><span class="en-only">See more</span><em>+'+(n-4)+'</em><i>↓</i>'}
 b.onclick=function(){var o=g.classList.contains('clip');g.classList.toggle('clip');t();if(!o){var r=g.getBoundingClientRect();if(r.top<0)window.scrollBy(0,r.top-90)}};t();g.parentNode.insertBefore(b,g.nextSibling)})})();</script>
+<div id="ptr" aria-hidden="true"><i></i><span class="ja-only" id="ptrJ">下に引いて更新</span><span class="en-only" id="ptrE">Pull to refresh</span></div>
+<script>(function(){
+/* refresh live data when the app comes back to the screen; reload the whole page if it was away a long time */
+var away=0;function back(){if(document.hidden){away=Date.now();return}if(away&&Date.now()-away>10*60*1000){location.reload();return}try{window.dispatchEvent(new Event('tcc-refresh'))}catch(e){}}
+document.addEventListener('visibilitychange',back);window.addEventListener('pageshow',function(e){if(e.persisted)location.reload()});
+/* pull to refresh (works in the home-screen app and in the browser) */
+var p=document.getElementById('ptr'),J=document.getElementById('ptrJ'),E=document.getElementById('ptrE'),y0=null,d=0,T=90;
+function blocked(){var b=document.body;return b.classList.contains('mn-open')||b.classList.contains('lx-lock')||b.classList.contains('locked')}
+document.addEventListener('touchstart',function(e){y0=(window.scrollY<=0&&!blocked()&&e.touches.length===1)?e.touches[0].clientY:null;d=0},{passive:true});
+document.addEventListener('touchmove',function(e){if(y0===null)return;d=e.touches[0].clientY-y0;if(d<=0||window.scrollY>0){p.style.opacity=0;return}var k=Math.min(d,T*1.4);p.style.opacity=Math.min(1,k/T);p.style.transform='translate(-50%,'+(k*.6-40)+'px)';var r=d>=T;J.textContent=r?'離すと更新':'下に引いて更新';E.textContent=r?'Release to refresh':'Pull to refresh'},{passive:true});
+document.addEventListener('touchend',function(){if(y0===null)return;y0=null;if(d>=T){p.classList.add('go');J.textContent='更新しています';E.textContent='Refreshing';p.style.opacity=1;p.style.transform='translate(-50%,20px)';setTimeout(function(){location.reload()},250)}else{p.style.opacity=0;p.style.transform='translate(-50%,-60px)'}},{passive:true});
+})();</script>
 </body>
 </html>
