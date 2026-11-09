@@ -987,10 +987,15 @@ body.en #lounges .lounge.open>p.ja-only{display:none!important}
 #lounges .lounge.open::after{transform:rotate(-135deg);top:30px}
 #lounges .lounge.open>p,#lounges .lounge.open>.lg-h,#lounges .lounge.open>.lg-map{animation:lgIn .35s ease}
 @keyframes lgIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+#intro .in-code{display:inline-block;color:inherit;transition:color 1.6s ease;cursor:default;padding:8px 0;margin:-8px 0;-webkit-tap-highlight-color:transparent}
+#intro.red .in-code{color:#b3121b!important}
+#intro .in-code.tap{animation:codeTap .28s ease}
+@keyframes codeTap{50%{opacity:.55}}
+#intro{cursor:default!important}
 </style>
 </head>
 <body class="locked">
-<div id="intro" aria-hidden="true"><canvas id="smk"></canvas><div class="in-t"><span class="wd">THE CIGAR CODE</span></div><div class="in-a">20歳以上の方を対象としたサイトです · For adults aged 20 and over</div></div>
+<div id="intro" aria-hidden="true"><canvas id="smk"></canvas><div class="in-t"><span class="wd">THE CIGAR <span id="inCode" class="in-code">CODE</span></span></div><div class="in-a">20歳以上の方を対象としたサイトです · For adults aged 20 and over</div></div>
 <header class="top" id="hdr"><div class="hd">
   <nav class="nav-l"><a href="#archive">Gatherings</a><a href="#notes">Notes</a><a href="#history">History</a><a href="#lounges">Lounges</a></nav>
   <a class="logo" href="#top"><b><span class="wd">THE CIGAR CODE</span></b></a>
@@ -1726,7 +1731,7 @@ body.en #lounges .lounge.open>p.ja-only{display:none!important}
   window.scrollTo(0,0);
   function end(ev){if(ev){ev.preventDefault();ev.stopPropagation();}if(gone)return;gone=true;window.scrollTo(0,0);el.classList.add('out');document.body.classList.remove('locked');setTimeout(function(){el.remove();window.scrollTo(0,0)},1600);}
   requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('on')})});
-  setTimeout(end,5800);
+  setTimeout(function(){el.classList.add('red')},4300);
   (function(){var cv=document.getElementById('smk');if(!cv||!cv.getContext)return;var cx=cv.getContext('2d'),dpr=Math.min(window.devicePixelRatio||1,2),W,H;
     function rs(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}rs();window.addEventListener('resize',rs);
     function mk(n,soft){var c=document.createElement('canvas');c.width=c.height=256;var g=c.getContext('2d');
@@ -1745,7 +1750,10 @@ body.en #lounges .lounge.open>p.ja-only{display:none!important}
         var q=p.age/p.life;p.ph+=dt*.0016;p.x+=(p.vx+Math.sin(p.ph+p.y*.012)*.7*p.tb*(.3+q))*dt*.06;p.y+=p.vy*(1-q*.5)*dt*.06;p.r+=p.gr*dt*.06;p.rot+=p.vr*dt;
         cx.globalAlpha=p.a*(q<.12?q/.12:1)*Math.pow(1-q,1.8)*.42;cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.drawImage(p.s,-p.r*1.3,-p.r*1.3,p.r*2.6,p.r*2.6);cx.restore()}
       cx.globalAlpha=1;requestAnimationFrame(fr)}requestAnimationFrame(fr)})();
-  el.addEventListener('click',end);el.addEventListener('touchend',end,{passive:false});
+  var code=document.getElementById('inCode'),taps=0,tt;
+  function knock(ev){ev.preventDefault();ev.stopPropagation();if(!el.classList.contains('red'))return;taps++;clearTimeout(tt);tt=setTimeout(function(){taps=0},2500);
+    code.classList.remove('tap');void code.offsetWidth;code.classList.add('tap');if(taps>=5){end();}}
+  code.addEventListener('touchend',knock,{passive:false});code.addEventListener('click',knock);
 })();
 </script>
 
