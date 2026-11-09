@@ -1901,6 +1901,8 @@ footer.ft .fhost .logo b,footer.ft .fhost .logo b .wd,#mnav .mn-host .fhost .log
 <script>
 (function(){
   var el=document.getElementById('intro');if(!el)return;
+  var skip=false;try{skip=sessionStorage.getItem('tcc-skip')==='1';sessionStorage.removeItem('tcc-skip')}catch(e){}
+  if(skip){el.remove();document.body.classList.remove('locked');try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e){}window.scrollTo(0,0);return}
   var gone=false;
   try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e){}
   if(location.hash&&location.hash!=='#rsvp'){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
@@ -2173,16 +2175,16 @@ document.querySelectorAll('a[href="#lounge-capitol"]').forEach(function(a){a.add
 function t(){var o=!g.classList.contains('clip');b.classList.toggle('open',o);b.innerHTML=o?'<span class="ja-only">閉じる</span><span class="en-only">Show less</span><i>↓</i>':'<span class="ja-only">もっと見る</span><span class="en-only">See more</span><em>+'+(n-4)+'</em><i>↓</i>'}
 b.onclick=function(){var o=g.classList.contains('clip');g.classList.toggle('clip');t();if(!o){var r=g.getBoundingClientRect();if(r.top<0)window.scrollBy(0,r.top-90)}};t();g.parentNode.insertBefore(b,g.nextSibling)})})();</script>
 <div id="ptr" aria-hidden="true"><i></i><span class="ja-only" id="ptrJ">下に引いて更新</span><span class="en-only" id="ptrE">Pull to refresh</span></div>
-<script>(function(){
+<script>window.tccReload=function(){try{sessionStorage.setItem('tcc-skip','1')}catch(e){}location.reload()};(function(){
 /* refresh live data when the app comes back to the screen; reload the whole page if it was away a long time */
-var away=0;function back(){if(document.hidden){away=Date.now();return}if(away&&Date.now()-away>10*60*1000){location.reload();return}try{window.dispatchEvent(new Event('tcc-refresh'))}catch(e){}}
-document.addEventListener('visibilitychange',back);window.addEventListener('pageshow',function(e){if(e.persisted)location.reload()});
+var away=0;function back(){if(document.hidden){away=Date.now();return}if(away&&Date.now()-away>10*60*1000){tccReload();return}try{window.dispatchEvent(new Event('tcc-refresh'))}catch(e){}}
+document.addEventListener('visibilitychange',back);window.addEventListener('pageshow',function(e){if(e.persisted)tccReload()});
 /* pull to refresh (works in the home-screen app and in the browser) */
 var p=document.getElementById('ptr'),J=document.getElementById('ptrJ'),E=document.getElementById('ptrE'),y0=null,d=0,T=90;
 function blocked(){var b=document.body;return b.classList.contains('mn-open')||b.classList.contains('lx-lock')||b.classList.contains('locked')}
 document.addEventListener('touchstart',function(e){y0=(window.scrollY<=0&&!blocked()&&e.touches.length===1)?e.touches[0].clientY:null;d=0},{passive:true});
 document.addEventListener('touchmove',function(e){if(y0===null)return;d=e.touches[0].clientY-y0;if(d<=0||window.scrollY>0){p.style.opacity=0;return}var k=Math.min(d,T*1.4);p.style.opacity=Math.min(1,k/T);p.style.transform='translate(-50%,'+(k*.6-40)+'px)';var r=d>=T;J.textContent=r?'離すと更新':'下に引いて更新';E.textContent=r?'Release to refresh':'Pull to refresh'},{passive:true});
-document.addEventListener('touchend',function(){if(y0===null)return;y0=null;if(d>=T){p.classList.add('go');J.textContent='更新しています';E.textContent='Refreshing';p.style.opacity=1;p.style.transform='translate(-50%,20px)';setTimeout(function(){location.reload()},250)}else{p.style.opacity=0;p.style.transform='translate(-50%,-60px)'}},{passive:true});
+document.addEventListener('touchend',function(){if(y0===null)return;y0=null;if(d>=T){p.classList.add('go');J.textContent='更新しています';E.textContent='Refreshing';p.style.opacity=1;p.style.transform='translate(-50%,20px)';setTimeout(function(){tccReload()},250)}else{p.style.opacity=0;p.style.transform='translate(-50%,-60px)'}},{passive:true});
 })();</script>
 </body>
 </html>
