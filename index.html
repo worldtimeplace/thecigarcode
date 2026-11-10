@@ -1208,6 +1208,13 @@ body:not(.en) #archive a.en-only,body.en #archive a.ja-only{display:none!importa
 #mnav .mn-logo .wd{display:inline-block!important;transform:scaleX(1.32)!important;transform-origin:left center!important;white-space:nowrap}
 #mnav .mn-l a small{font-size:11px!important;color:#e6e2da!important;letter-spacing:.12em!important}
 #mnav .mn-g i{font-size:10.5px!important;color:#cfcac0!important}
+/* lounges: areas collapsed, tap area to show its lounges */
+#lounges .lg-area{position:relative;cursor:pointer;padding:22px 34px 16px 0!important;margin:0!important;-webkit-tap-highlight-color:transparent;user-select:none}
+#lounges .lg-area .lg-n{margin-left:12px;font:500 11px "Montserrat",sans-serif;letter-spacing:.12em;color:var(--brass)}
+#lounges .lg-area::after{content:"";position:absolute;right:6px;top:24px;width:9px;height:9px;border-right:1.5px solid #555;border-bottom:1.5px solid #555;transform:rotate(45deg);transition:transform .3s}
+#lounges .lg-area.on::after{transform:rotate(-135deg);top:28px}
+#lounges .lounge.lg-hid{display:none!important}
+#lounges .lg-area.on~.lounge:not(.lg-hid){animation:lgIn .35s ease}
 </style>
 </head>
 <body class="locked">
@@ -2329,5 +2336,13 @@ document.addEventListener('touchmove',function(e){if(y0===null)return;d=e.touche
 document.addEventListener('touchend',function(){if(y0===null)return;y0=null;if(d>=T){p.classList.add('go');J.textContent='更新しています';E.textContent='Refreshing';p.style.opacity=1;p.style.transform='translate(-50%,20px)';setTimeout(function(){tccReload()},250)}else{p.style.opacity=0;p.style.transform='translate(-50%,-60px)'}},{passive:true});
 })();</script>
 <script>(function(){[].forEach.call(document.querySelectorAll('a.vh-link'),function(a){a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(!t)return;e.preventDefault();t.classList.add('open');var y=t.getBoundingClientRect().top+scrollY-90;window.scrollTo({top:y,behavior:'smooth'});t.classList.remove('flash');void t.offsetWidth;setTimeout(function(){t.classList.add('flash');setTimeout(function(){t.classList.remove('flash')},4200)},600)})})})();</script>
+<script>(function(){var box=document.querySelector('#lounges .lounges');if(!box)return;var cur=null,H=[];
+[].forEach.call(box.children,function(el){if(el.classList.contains('lg-area')){cur={h:el,L:[]};H.push(cur);}else if(cur&&el.classList.contains('lounge')){cur.L.push(el);el.classList.add('lg-hid');el._ar=cur}});
+function set(a,on){a.h.classList.toggle('on',on);a.L.forEach(function(l){l.classList.toggle('lg-hid',!on)})}
+H.forEach(function(a){var n=document.createElement('span');n.className='lg-n';n.textContent=a.L.length;a.h.appendChild(n);
+  a.h.addEventListener('click',function(){set(a,!a.h.classList.contains('on'))})});
+function reveal(id){var t=document.getElementById(id);if(t&&t._ar)set(t._ar,true)}
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#lounge-"]');if(a)reveal(a.getAttribute('href').slice(1))},true);
+if(location.hash.indexOf('#lounge-')===0)reveal(location.hash.slice(1));})();</script>
 </body>
 </html>
