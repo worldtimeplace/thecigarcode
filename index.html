@@ -1015,7 +1015,7 @@ body.en #lounges .lounge.open>p.ja-only{display:none!important}
 #intro.red .in-code{color:#b3121b!important}
 #intro .in-code.tap{animation:codeTap .28s ease}
 @keyframes codeTap{50%{opacity:.55}}
-#intro{cursor:default!important}
+#intro{cursor:pointer!important}
 body.en #mnav .mn-l small{display:none!important}
 body.en #habList .hb-tx,body.en .lounge p,body.en p{text-align:left!important}
 /* luxurious close */
@@ -2054,7 +2054,7 @@ body:not(.en) #archive a.en-only,body.en #archive a.ja-only{display:none!importa
   window.scrollTo(0,0);
   function end(ev){if(ev){ev.preventDefault();ev.stopPropagation();}if(gone)return;gone=true;try{sessionStorage.setItem('tcc-in','1')}catch(e){}window.scrollTo(0,0);el.classList.add('out');document.body.classList.remove('locked');setTimeout(function(){el.remove();window.scrollTo(0,0)},1600);}
   requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('on')})});
-  setTimeout(function(){el.classList.add('red')},4000);
+  setTimeout(function(){end()},6000);
   (function(){var cv=document.getElementById('smk');if(!cv||!cv.getContext)return;var cx=cv.getContext('2d'),dpr=Math.min(window.devicePixelRatio||1,2),W,H;
     function rs(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}rs();window.addEventListener('resize',rs);
     function mk(n,soft){var c=document.createElement('canvas');c.width=c.height=256;var g=c.getContext('2d');
@@ -2073,10 +2073,7 @@ body:not(.en) #archive a.en-only,body.en #archive a.ja-only{display:none!importa
         var q=p.age/p.life;p.ph+=dt*.0016;p.x+=(p.vx+Math.sin(p.ph+p.y*.012)*.7*p.tb*(.3+q))*dt*.06;p.y+=p.vy*(1-q*.5)*dt*.06;p.r+=p.gr*dt*.06;p.rot+=p.vr*dt;
         cx.globalAlpha=p.a*(q<.12?q/.12:1)*Math.pow(1-q,1.8)*.42;cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.drawImage(p.s,-p.r*1.3,-p.r*1.3,p.r*2.6,p.r*2.6);cx.restore()}
       cx.globalAlpha=1;requestAnimationFrame(fr)}requestAnimationFrame(fr)})();
-  var code=document.getElementById('inCode'),taps=0,tt;
-  function knock(ev){ev.preventDefault();ev.stopPropagation();if(!el.classList.contains('red'))return;taps++;clearTimeout(tt);tt=setTimeout(function(){taps=0},2500);
-    code.classList.remove('tap');void code.offsetWidth;code.classList.add('tap');if(taps>=5){end();}}
-  code.addEventListener('touchend',knock,{passive:false});code.addEventListener('click',knock);
+  el.addEventListener('click',end);el.addEventListener('touchend',end,{passive:false});
 })();
 </script>
 
