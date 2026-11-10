@@ -2337,17 +2337,21 @@ load();setInterval(function(){if(!document.hidden)load()},30000);window.addEvent
 var lx=document.getElementById('lx');if(!lx)return;var M=lx.querySelector('.lx-media'),EV=lx.querySelector('.lx-ev'),CT=lx.querySelector('.lx-ct');
 var list=[],idx=0,src=null,busy=false,E='cubic-bezier(.22,.61,.36,1)';
 function ev(g){var gl=g.closest('.gal');if(gl&&gl.dataset.cap)return gl.dataset.cap;var v=g.closest('.vol');if(!v)return'';var b=v.querySelector('.vol-h b'),sp=v.querySelector('.vol-h span.en-only')||v.querySelector('.vol-h span');return (b?b.textContent:'')+(sp?'  ·  '+sp.textContent.split('·')[0].trim():'')}
-function el(g){var x;if(g.dataset.v){x=document.createElement('video');x.src=g.dataset.v;x.controls=true;x.autoplay=true;x.playsInline=true;x.setAttribute('playsinline','');}else{x=new Image();x.alt='';x.decoding='async';var th=g.querySelector('img');var full=g.dataset.i;var pre=new Image();pre.onload=function(){x.src=full};pre.src=full;if(pre.complete&&pre.naturalWidth){x.src=full}else if(th&&th.complete&&th.naturalWidth){x.src=th.currentSrc||th.src}else{x.src=full}}return x}
-function warm(i){var g=list[(i+list.length)%list.length];if(g&&g.dataset.i){var p=new Image();p.src=g.dataset.i}}
-function ready(x,cb){if(x.tagName==='VIDEO'){if(x.readyState>=1)cb();else{x.addEventListener('loadedmetadata',cb,{once:true});setTimeout(cb,1500)}}else{if(x.complete&&x.naturalWidth)cb();else{x.onload=cb;x.onerror=cb}}}
+function el(g){var x;if(g.dataset.v){x=document.createElement('video');x.src=g.dataset.v;x.controls=true;x.autoplay=true;x.playsInline=true;x.setAttribute('playsinline','');return x}
+ x=new Image();x.alt='';var th=g.querySelector('img');x.src=(th&&th.getAttribute('src'))||g.dataset.i;x._full=g.dataset.i;return x}
+function warm(i,full){var g=list[(i+list.length)%list.length];if(!g)return;var th=g.querySelector('img');var u=full?g.dataset.i:(th&&th.getAttribute('src'));if(u){var p=new Image();p.src=u}}
+function upgrade(x,g){if(!x._full||x.getAttribute('src')===x._full)return;var f=new Image();f.onload=function(){if(src===g&&M.contains(x)){x.onload=x.onerror=null;x.src=x._full}};f.src=x._full}
+function ready(x,cb){var done=false;function fire(){if(done)return;done=true;x.onload=x.onerror=null;cb()}
+ if(x.tagName==='VIDEO'){if(x.readyState>=1)fire();else{x.addEventListener('loadedmetadata',fire,{once:true});setTimeout(fire,1500)}return}
+ if(x.complete&&x.naturalWidth){fire();return}x.onload=fire;x.onerror=function(){if(x._full&&x.getAttribute('src')!==x._full){x.src=x._full}else fire()};setTimeout(fire,4000)}
 function flipFrom(rect){var r=M.getBoundingClientRect();if(!r.width)return;var sx=rect.width/r.width,sy=rect.height/r.height,s=Math.max(sx,sy);
  M.style.transition='none';M.style.transform='translate('+(rect.left-r.left)+'px,'+(rect.top-r.top)+'px) scale('+s+')';M.style.opacity='.6';M.getBoundingClientRect();
  M.style.transition='transform 1.05s '+E+',opacity .8s ease';M.style.transform='none';M.style.opacity='1';}
-function show(i,first){idx=(i+list.length)%list.length;var g=list[idx];src=g;var x=el(g);warm(idx+1);warm(idx-1);
+function show(i,first){idx=(i+list.length)%list.length;var g=list[idx];src=g;var x=el(g);warm(idx+1);warm(idx-1);warm(idx+2);setTimeout(function(){if(src===g){warm(idx+1,1);warm(idx-1,1)}},900);
  EV.textContent=ev(g);CT.textContent=String(idx+1).padStart(2,'0')+' / '+String(list.length).padStart(2,'0');
  var go=function(){M.innerHTML='';M.appendChild(x);M.classList.remove('color','swap');
    if(first){var t=g.querySelector('img');flipFrom((t||g).getBoundingClientRect());}
-   requestAnimationFrame(function(){requestAnimationFrame(function(){M.classList.add('color')})});busy=false;};
+   requestAnimationFrame(function(){requestAnimationFrame(function(){M.classList.add('color')})});busy=false;upgrade(x,g);};
  if(first){ready(x,go)}else{M.classList.add('swap');setTimeout(function(){ready(x,go)},420)}}
 function open(g){if(busy)return;busy=true;var v=g.closest('.gal');list=[].slice.call(v.querySelectorAll('.g'));
  lx.classList.add('on');lx.setAttribute('aria-hidden','false');document.body.classList.add('lx-lock');show(list.indexOf(g),true)}
