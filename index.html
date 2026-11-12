@@ -1293,6 +1293,24 @@ body:not(.en) .nx-after .en-only,body.en .nx-after .ja-only{display:none!importa
 .hero .nx-d{font-size:17.5px!important;letter-spacing:.05em!important;line-height:1.7!important}.hero .nx-d .nw+.nw{margin-left:.35em}.hero .nx-d.ja-only{letter-spacing:.03em!important}@media(max-width:360px){.hero .nx-d{font-size:16px!important}}
 @font-face{font-family:"Italianno";src:url(media/fonts/italianno.woff2) format("woff2");font-display:swap}
 #archive .vol-sp .sp-name{font-family:"Italianno",cursive!important;font-style:normal!important;font-weight:400!important;font-size:clamp(62px,17vw,94px)!important;letter-spacing:.01em!important;line-height:.95!important;margin:14px 0 10px!important}
+.codes{position:relative;margin:34px -24px 44px;overflow:hidden;isolation:isolate}
+.codes .cd-bg{position:absolute;inset:0;z-index:-1;background:url(media/code_bg_s.jpg) center/cover no-repeat}
+@media(min-width:861px){.codes .cd-bg{background-image:url(media/code_bg.jpg)}.codes{margin-left:0;margin-right:0}}
+.codes .cd-in{position:relative;padding:40px 30px 38px}
+.codes .cd-k{font:500 9.5px "Montserrat",sans-serif;letter-spacing:.44em;color:#C9A977;margin-bottom:18px}
+.codes .cd-l{list-style:none;margin:0;padding:0}
+.codes .cd-l li{display:grid;grid-template-columns:34px 1fr;gap:4px;padding:16px 0}
+.codes .cd-l li+li{border-top:1px solid rgba(201,169,119,.28)}
+.codes .cd-l em{font:italic 400 17px/1.3 "Bodoni Moda",serif;color:#C9A977}
+.codes .cd-l small{display:block;font:500 9px "Montserrat",sans-serif;letter-spacing:.36em;color:#C9A977;margin:3px 0 6px}
+.codes .cd-l b{display:block;font:500 14.5px/1.6 "Zen Old Mincho",serif;letter-spacing:.12em;margin-bottom:4px}
+body.en .codes .cd-l b{font:italic 400 17px/1.3 "Bodoni Moda",serif;letter-spacing:.01em}
+.codes .cd-l p{margin:0!important;font-size:12.5px!important;line-height:1.95!important;letter-spacing:.06em!important}
+.codes .cd-end{margin:22px 0 0!important;padding-top:22px;border-top:1px solid #C9A977;font:400 13px/2 "Zen Old Mincho",serif!important;font-weight:400!important;letter-spacing:.08em!important;color:#e3d9c6!important}
+.codes .cd-end i{font-style:normal;font-family:"Montserrat",sans-serif;font-weight:400;letter-spacing:.16em;font-size:.88em}
+body.en .codes .cd-end{font:italic 400 15px/1.6 "Bodoni Moda",serif!important;letter-spacing:.01em!important}
+.codes .cd-bg{filter:none!important}.codes .cd-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,5,.45) 0%,rgba(10,8,5,.78) 45%,rgba(10,8,5,.9) 100%)}
+.codes,.codes .cd-l b,.codes .cd-end{color:#f6efe2!important}.codes .cd-l p{color:#e3d9c6!important}.codes{outline:1px solid rgba(201,169,119,.5);outline-offset:-10px}
 </style>
 </head>
 <body class="locked">
@@ -1331,9 +1349,20 @@ body:not(.en) .nx-after .en-only,body.en .nx-after .ja-only{display:none!importa
     <header class="hm"><div class="kk">ABOUT</div><h2 class="hh2"><span class="wd">the Cigar Code</span></h2></header>
     <h2 class="ja-only">葉巻を嗜む紳士淑女の集い</h2>
     <h2 class="en-only">A gathering of cigar connoisseurs</h2>
-    <p class="body ja-only">CODE とは、流儀。一本の葉巻に向き合う作法と美学を、敬意とともに受け継ぐこと。<br>CODE とは、装い。身なりを整え、その夜にふさわしい姿で集うこと。<br>そして CODE とは、合言葉。招かれた者だけが知る扉の向こうで、静かに語り合うこと。<br>3つのコードを携えた紳士淑女が集う場所、それが THE CIGAR CODE です。</p>
+    <div class="codes">
+      <div class="cd-bg" aria-hidden="true"></div>
+      <div class="cd-in">
+        <div class="cd-k">THE THREE CODES</div>
+        <ol class="cd-l">
+          <li><em>I</em><div><small>CODE OF CONDUCT</small><b class="ja-only">CODE とは、流儀。</b><b class="en-only">A code of conduct.</b><p class="ja-only">一本の葉巻を、ゆっくり味わう。その時間を大切にする人たちの、ささやかな作法です。</p><p class="en-only">Taking the time to truly enjoy a fine cigar &mdash; a small ritual shared by those who value it.</p></div></li>
+          <li><em>II</em><div><small>DRESS CODE</small><b class="ja-only">CODE とは、装い。</b><b class="en-only">A dress code.</b><p class="ja-only">少しだけ装って出かける夜。それだけで、会話はいつもより弾みます。</p><p class="en-only">Dressing up just a little for the evening. It always makes the conversation better.</p></div></li>
+          <li><em>III</em><div><small>CODE WORD</small><b class="ja-only">そして CODE とは、合言葉。</b><b class="en-only">And a code word.</b><p class="ja-only">知る人ぞ知る扉の向こうで、肩書きを置いて、気軽に語り合う。</p><p class="en-only">Behind a door few know, titles are left at the entrance and conversation flows freely.</p></div></li>
+        </ol>
+        <p class="cd-end ja-only"><span class="nw">堅苦しい決まりはありません。</span><br><span class="nw">葉巻とお酒と、いい会話があれば十分。</span><br><span class="nw">それが <i>THE CIGAR CODE</i> です。</span></p>
+        <p class="cd-end en-only">No stiff rules &mdash; a fine cigar, a good drink and great conversation are all it takes. That is THE CIGAR CODE.</p>
+      </div>
+    </div>
     <p class="body ja-only">名刺交換やお仕事のお話も歓迎いたします。この場での出会いが、新たなご縁や事業につながれば幸いです。東京を拠点に、海外の愛好家やシガーマスターとの交流の機会も設けてまいります。</p>
-    <p class="body en-only">A code of conduct: the ritual and quiet aesthetic of a fine cigar, honoured and passed on.<br>A dress code: to arrive composed, dressed for the evening.<br>And a code word: shared only by those invited, behind a door few know.<br>THE CIGAR CODE is where ladies and gentlemen who carry all three come together.</p>
     <p class="body en-only">Exchanging business cards and talking business are both welcome; we hope new relationships and ventures grow from these evenings. Based in Tokyo, we also intend to host exchanges with aficionados and cigar masters from abroad.</p>
     <h2 class="ja-only ab-sub" id="gatherings">会のかたち</h2>
     <h2 class="en-only ab-sub">Three ways to gather</h2>
