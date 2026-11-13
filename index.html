@@ -1378,6 +1378,16 @@ body.en .codes .cd-end{font:italic 400 15px/1.6 "Bodoni Moda",serif!important;le
 #intro.gated{cursor:default!important}
 #intro .gate{padding:0 20px!important}
 @media(min-width:861px){#intro .gate{padding:0 0 0 clamp(24px,6.4vw,92px)!important;max-width:620px}}
+/* gate: graceful unlock */
+#intro.gt-ok .gate{opacity:0!important;transform:translateY(-6px)!important;transition:opacity .7s ease,transform .9s cubic-bezier(.22,.61,.36,1)!important;pointer-events:none}
+#intro.gt-ok .gt-f{border-bottom-color:#C9A977!important}
+#intro.gt-ok .in-t{transform:none!important;transition:transform 1.5s cubic-bezier(.22,.61,.36,1) .2s!important}
+#intro.gt-ok .in-code{color:#C9A977!important;transition:color 1.2s ease .5s}
+#intro.out{transition:opacity 1.6s cubic-bezier(.4,0,.2,1)!important}
+body.tcc-reveal .hero img{animation:tccIn 2.4s cubic-bezier(.22,.61,.36,1) both}
+body.tcc-reveal .hero .in{animation:tccUp 1.8s cubic-bezier(.22,.61,.36,1) .5s both}
+@keyframes tccIn{from{transform:scale(1.06);opacity:.4}to{transform:none;opacity:1}}
+@keyframes tccUp{from{transform:translateY(18px);opacity:0}to{transform:none;opacity:1}}
 </style>
 </head>
 <body class="locked">
@@ -2334,8 +2344,8 @@ body.en .codes .cd-end{font:italic 400 15px/1.6 "Bodoni Moda",serif!important;le
   function hx(b){return [].map.call(new Uint8Array(b),function(x){return ('0'+x.toString(16)).slice(-2)}).join('')}
   G.addEventListener('submit',function(e){e.preventDefault();var v=(I.value||'');try{v=v.normalize('NFKC')}catch(x){}v=v.replace(/[\s\u200b\u3000「」『』"'“”]/g,'').toUpperCase();
     crypto.subtle.digest('SHA-256',new TextEncoder().encode(v)).then(function(d){
-      if(hx(d)===H){try{localStorage.setItem('tcc-ok',String(Date.now()))}catch(x){}I.blur();el.classList.remove('gated');
-        var nx=new URLSearchParams(location.search).get('next');if(nx&&/^\/[a-z-]+\/$/.test(nx)){location.replace(nx);return}end()}
+      if(hx(d)===H){try{localStorage.setItem('tcc-ok',String(Date.now()))}catch(x){}I.blur();el.classList.add('gt-ok');
+        var nx=new URLSearchParams(location.search).get('next');setTimeout(function(){if(nx&&/^\/[a-z-]+\/$/.test(nx)){el.classList.add('out');setTimeout(function(){location.replace(nx)},900);return}el.classList.remove('gated');document.body.classList.add('tcc-reveal');end()},1700)}
       else{G.classList.remove('err');void G.offsetWidth;G.classList.add('err');I.select()}});});
 })();
 </script>
