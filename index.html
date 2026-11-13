@@ -1355,10 +1355,33 @@ body.en .codes .cd-end{font:italic 400 15px/1.6 "Bodoni Moda",serif!important;le
 #archive .vol-ep{margin-top:-24px}
 #archive .vol-sp .sp-web i{width:16px;height:16px;border-radius:50%;background:none;border:1.5px solid #C9A977;box-sizing:border-box}
 #archive .vol-sp .sp-web i:after{left:50%;top:-1px;bottom:-1px;width:6px;margin-left:-3px;border:1.5px solid #C9A977;border-radius:50%;box-sizing:border-box}
+#intro .in-t{transition:opacity 3s ease .9s,filter 3.4s ease .9s,transform 1.4s cubic-bezier(.22,.61,.36,1)!important}
+#intro.gt-on .in-t{transform:translateY(-20vh)!important}
+#intro .gate{display:block!important;box-sizing:border-box;width:100%;margin:0!important;position:absolute;left:0;right:0;top:46%;z-index:2;padding:0 clamp(24px,8vw,96px);opacity:0;transform:translateY(14px);transition:opacity 1.4s ease .5s,transform 1.4s cubic-bezier(.22,.61,.36,1) .5s;pointer-events:none;max-width:560px}
+#intro.gt-on .gate{opacity:1;transform:none;pointer-events:auto}
+#intro .gate>div{display:block}
+#intro .gt-k{display:flex!important;font:500 10px "Montserrat",sans-serif;letter-spacing:.5em;color:#C9A977;align-items:center;gap:14px}
+#intro .gt-k:after{content:"";flex:0 0 46px;height:1px;background:rgba(201,169,119,.55)}
+#intro .gate .gt-l{margin:12px 0 16px;font-family:"Montserrat",sans-serif!important;font-style:normal!important;font-weight:300!important;font-size:16px!important;letter-spacing:.08em!important;color:#d8d2c6}
+#intro.gt-on .in-a{display:none!important}
+#intro .in-a{display:none!important}
+#intro .gt-f{display:flex!important;align-items:center;border-bottom:1px solid rgba(233,228,218,.45);transition:border-color .4s}
+#intro .gt-f:focus-within{border-bottom-color:#C9A977}
+#intro .gt-f input{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font:400 17px "Montserrat",sans-serif;letter-spacing:.4em;padding:12px 0;-webkit-appearance:none;border-radius:0}
+#intro .gt-f input::placeholder{color:rgba(233,228,218,.3);letter-spacing:.5em;font-size:11px}
+#intro .gt-f button{background:none;border:0;color:#C9A977;font-size:20px;padding:8px 2px 8px 14px;cursor:pointer}
+#intro .gt-e{height:0;overflow:hidden;opacity:0;margin-top:10px;font:400 11.5px "Zen Old Mincho",serif;letter-spacing:.14em;color:#d9a37a;transition:opacity .4s}
+#intro .gate.err .gt-e{height:auto;opacity:1}
+#intro .gate.err .gt-f{animation:gtShake .5s ease;border-bottom-color:#b06a48}
+@keyframes gtShake{20%{transform:translateX(-6px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(2px)}}
+#intro .gt-n{margin-top:22px;font:400 11px "Zen Old Mincho",serif;letter-spacing:.12em;line-height:1.9;color:rgba(233,228,218,.5)}
+#intro.gated{cursor:default!important}
+#intro .gate{padding:0 20px!important}
+@media(min-width:861px){#intro .gate{padding:0 0 0 clamp(24px,6.4vw,92px)!important;max-width:620px}}
 </style>
 </head>
 <body class="locked">
-<div id="intro" aria-hidden="true"><canvas id="smk"></canvas><div class="in-t"><span class="wd">THE CIGAR <span id="inCode" class="in-code">CODE</span></span></div><div class="in-a">20歳以上の方を対象としたサイトです · For adults aged 20 and over</div></div>
+<div id="intro" aria-hidden="true"><canvas id="smk"></canvas><div class="in-t"><span class="wd">THE CIGAR <span id="inCode" class="in-code">CODE</span></span></div><form class="gate" id="gate" autocomplete="off" onsubmit="return false"><div class="gt-k">MEMBERS ONLY</div><div class="gt-l">Enter the code</div><div class="gt-f"><input id="gtIn" type="password" autocapitalize="characters" autocorrect="off" spellcheck="false" maxlength="12" placeholder="CODE" aria-label="Code"><button type="submit" aria-label="Enter">&rarr;</button></div><div class="gt-e" id="gtE"><span class="ja-only">CODEが違います</span><span class="en-only">Incorrect code</span></div><div class="gt-n"><span class="ja-only">CODEは、LINEグループでお知らせしています。</span><span class="en-only">The code is shared in the LINE group.</span></div></form><div class="in-a">20歳以上の方を対象としたサイトです · For adults aged 20 and over</div></div>
 <header class="top" id="hdr"><div class="hd">
   <nav class="nav-l"><a href="#archive">Gatherings</a><a href="#notes">Notes</a><a href="#history">History</a><a href="#lounges">Lounges</a></nav>
   <a class="logo" href="#top"><b><span class="wd">THE CIGAR CODE</span></b></a>
@@ -2278,7 +2301,8 @@ body.en .codes .cd-end{font:italic 400 15px/1.6 "Bodoni Moda",serif!important;le
 <script>
 (function(){
   var el=document.getElementById('intro');if(!el)return;
-  var skip=false;try{skip=sessionStorage.getItem('tcc-skip')==='1'||sessionStorage.getItem('tcc-in')==='1';sessionStorage.removeItem('tcc-skip')}catch(e){}
+  var OK=false;try{var t=+localStorage.getItem('tcc-ok');OK=t&&(Date.now()-t)<30*864e5}catch(e){}
+  var skip=false;try{skip=OK&&(sessionStorage.getItem('tcc-skip')==='1'||sessionStorage.getItem('tcc-in')==='1');sessionStorage.removeItem('tcc-skip')}catch(e){}
   if(skip){el.remove();document.body.classList.remove('locked');try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e){}var hh=location.hash&&location.hash!=='#rsvp'?document.querySelector(location.hash):null;if(hh){setTimeout(function(){hh.scrollIntoView()},60)}else{window.scrollTo(0,0)}return}
   var gone=false;
   try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e){}
@@ -2286,7 +2310,7 @@ body.en .codes .cd-end{font:italic 400 15px/1.6 "Bodoni Moda",serif!important;le
   window.scrollTo(0,0);
   function end(ev){if(ev){ev.preventDefault();ev.stopPropagation();}if(gone)return;gone=true;try{sessionStorage.setItem('tcc-in','1')}catch(e){}window.scrollTo(0,0);el.classList.add('out');document.body.classList.remove('locked');setTimeout(function(){el.remove();window.scrollTo(0,0)},1600);}
   requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('on')})});
-  setTimeout(function(){end()},6000);
+  if(OK){setTimeout(function(){end()},6000)}else{el.classList.add('gated');setTimeout(function(){el.classList.add('gt-on');try{document.getElementById('gtIn').focus({preventScroll:true})}catch(e){}},2600)}
   (function(){var cv=document.getElementById('smk');if(!cv||!cv.getContext)return;var cx=cv.getContext('2d'),dpr=Math.min(window.devicePixelRatio||1,2),W,H;
     function rs(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}rs();window.addEventListener('resize',rs);
     function mk(n,soft){var c=document.createElement('canvas');c.width=c.height=256;var g=c.getContext('2d');
@@ -2305,7 +2329,14 @@ body.en .codes .cd-end{font:italic 400 15px/1.6 "Bodoni Moda",serif!important;le
         var q=p.age/p.life;p.ph+=dt*.0016;p.x+=(p.vx+Math.sin(p.ph+p.y*.012)*.7*p.tb*(.3+q))*dt*.06;p.y+=p.vy*(1-q*.5)*dt*.06;p.r+=p.gr*dt*.06;p.rot+=p.vr*dt;
         cx.globalAlpha=p.a*(q<.12?q/.12:1)*Math.pow(1-q,1.8)*.42;cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.drawImage(p.s,-p.r*1.3,-p.r*1.3,p.r*2.6,p.r*2.6);cx.restore()}
       cx.globalAlpha=1;requestAnimationFrame(fr)}requestAnimationFrame(fr)})();
-  el.addEventListener('click',end);el.addEventListener('touchend',end,{passive:false});
+  el.addEventListener('click',function(e){if(!el.classList.contains('gated'))end(e)});el.addEventListener('touchend',function(e){if(!el.classList.contains('gated'))end(e)},{passive:false});
+  var H='6872ad6be0e66364bd7cec639bbd5f6487426699f62b28721e70f59046619b90',G=document.getElementById('gate'),I=document.getElementById('gtIn');
+  function hx(b){return [].map.call(new Uint8Array(b),function(x){return ('0'+x.toString(16)).slice(-2)}).join('')}
+  G.addEventListener('submit',function(e){e.preventDefault();var v=(I.value||'').trim().toUpperCase();
+    crypto.subtle.digest('SHA-256',new TextEncoder().encode(v)).then(function(d){
+      if(hx(d)===H){try{localStorage.setItem('tcc-ok',String(Date.now()))}catch(x){}I.blur();el.classList.remove('gated');
+        var nx=new URLSearchParams(location.search).get('next');if(nx&&/^\/[a-z-]+\/$/.test(nx)){location.replace(nx);return}end()}
+      else{G.classList.remove('err');void G.offsetWidth;G.classList.add('err');I.select()}});});
 })();
 </script>
 
