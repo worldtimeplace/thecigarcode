@@ -1381,7 +1381,7 @@ body.en .codes .cd-end{font:italic 400 15px/1.6 "Bodoni Moda",serif!important;le
 </style>
 </head>
 <body class="locked">
-<div id="intro" aria-hidden="true"><canvas id="smk"></canvas><div class="in-t"><span class="wd">THE CIGAR <span id="inCode" class="in-code">CODE</span></span></div><form class="gate" id="gate" autocomplete="off" onsubmit="return false"><div class="gt-k">MEMBERS ONLY</div><div class="gt-l">Enter the code</div><div class="gt-f"><input id="gtIn" type="password" autocapitalize="characters" autocorrect="off" spellcheck="false" maxlength="12" placeholder="CODE" aria-label="Code"><button type="submit" aria-label="Enter">&rarr;</button></div><div class="gt-e" id="gtE"><span class="ja-only">CODEが違います</span><span class="en-only">Incorrect code</span></div><div class="gt-n"><span class="ja-only">CODEは、LINEグループでお知らせしています。</span><span class="en-only">The code is shared in the LINE group.</span></div></form><div class="in-a">20歳以上の方を対象としたサイトです · For adults aged 20 and over</div></div>
+<div id="intro" aria-hidden="true"><canvas id="smk"></canvas><div class="in-t"><span class="wd">THE CIGAR <span id="inCode" class="in-code">CODE</span></span></div><form class="gate" id="gate" autocomplete="off" onsubmit="return false"><div class="gt-k">MEMBERS ONLY</div><div class="gt-l">Enter the code</div><div class="gt-f"><input id="gtIn" type="password" autocapitalize="none" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="40" placeholder="CODE" aria-label="Code"><button type="submit" aria-label="Enter">&rarr;</button></div><div class="gt-e" id="gtE"><span class="ja-only">CODEが違います</span><span class="en-only">Incorrect code</span></div><div class="gt-n"><span class="ja-only">CODEは、LINEグループでお知らせしています。</span><span class="en-only">The code is shared in the LINE group.</span></div></form><div class="in-a">20歳以上の方を対象としたサイトです · For adults aged 20 and over</div></div>
 <header class="top" id="hdr"><div class="hd">
   <nav class="nav-l"><a href="#archive">Gatherings</a><a href="#notes">Notes</a><a href="#history">History</a><a href="#lounges">Lounges</a></nav>
   <a class="logo" href="#top"><b><span class="wd">THE CIGAR CODE</span></b></a>
@@ -2330,9 +2330,9 @@ body.en .codes .cd-end{font:italic 400 15px/1.6 "Bodoni Moda",serif!important;le
         cx.globalAlpha=p.a*(q<.12?q/.12:1)*Math.pow(1-q,1.8)*.42;cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.drawImage(p.s,-p.r*1.3,-p.r*1.3,p.r*2.6,p.r*2.6);cx.restore()}
       cx.globalAlpha=1;requestAnimationFrame(fr)}requestAnimationFrame(fr)})();
   el.addEventListener('click',function(e){if(!el.classList.contains('gated'))end(e)});el.addEventListener('touchend',function(e){if(!el.classList.contains('gated'))end(e)},{passive:false});
-  var H='6872ad6be0e66364bd7cec639bbd5f6487426699f62b28721e70f59046619b90',G=document.getElementById('gate'),I=document.getElementById('gtIn');
+  var H='825effa096531c39159f100bce91fe8af823216dcf500329d3407f15d4a3c3ab',G=document.getElementById('gate'),I=document.getElementById('gtIn');
   function hx(b){return [].map.call(new Uint8Array(b),function(x){return ('0'+x.toString(16)).slice(-2)}).join('')}
-  G.addEventListener('submit',function(e){e.preventDefault();var v=(I.value||'').trim().toUpperCase();
+  G.addEventListener('submit',function(e){e.preventDefault();var v=(I.value||'');try{v=v.normalize('NFKC')}catch(x){}v=v.replace(/[\s\u200b\u3000「」『』"'“”]/g,'').toUpperCase();
     crypto.subtle.digest('SHA-256',new TextEncoder().encode(v)).then(function(d){
       if(hx(d)===H){try{localStorage.setItem('tcc-ok',String(Date.now()))}catch(x){}I.blur();el.classList.remove('gated');
         var nx=new URLSearchParams(location.search).get('next');if(nx&&/^\/[a-z-]+\/$/.test(nx)){location.replace(nx);return}end()}
