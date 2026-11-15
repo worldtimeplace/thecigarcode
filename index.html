@@ -1388,6 +1388,14 @@ body.tcc-reveal .hero img{animation:tccIn 2.4s cubic-bezier(.22,.61,.36,1) both}
 body.tcc-reveal .hero .in{animation:tccUp 1.8s cubic-bezier(.22,.61,.36,1) .5s both}
 @keyframes tccIn{from{transform:scale(1.06);opacity:.4}to{transform:none;opacity:1}}
 @keyframes tccUp{from{transform:translateY(18px);opacity:0}to{transform:none;opacity:1}}
+/* mobile: use more of the screen */
+@media(max-width:760px){
+section .wrap,.wrap2{padding-left:16px!important;padding-right:16px!important}
+.hero .in{padding-left:16px!important;padding-right:16px!important}
+#archive .vol-sp{margin-left:-8px!important;margin-right:-8px!important;padding-left:20px!important;padding-right:20px!important}
+#archive .gal{max-width:none!important}
+.codes{margin-left:-16px!important;margin-right:-16px!important}
+}
 </style>
 </head>
 <body class="locked">
