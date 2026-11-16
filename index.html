@@ -1396,6 +1396,24 @@ section .wrap,.wrap2{padding-left:16px!important;padding-right:16px!important}
 #archive .gal{max-width:none!important}
 .codes{margin-left:-16px!important;margin-right:-16px!important}
 }
+
+/* 開催2日前から：日時と場所に、銀の細い枠と、ゆっくり流れる光（サイトのモノクロに合わせる） */
+.hero .nx-key{position:relative;display:inline-block}
+.hero .nx-soonb{display:inline-flex;align-items:center;gap:10px;margin:2px 0 14px;font:600 10.5px "Inter Tight","Zen Old Mincho",sans-serif;letter-spacing:.28em;color:#fff;text-transform:uppercase}
+.hero .nx-soonb[hidden]{display:none}
+.hero .nx-soonb i{width:7px;height:7px;border-radius:50%;background:#fff;animation:nxDot 2.6s ease-out infinite}
+@keyframes nxDot{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}70%{box-shadow:0 0 0 11px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+.hero .nx.soon .nx-key{padding:16px 22px 14px;margin-left:-22px;border:1px solid rgba(255,255,255,.42);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015))}
+.hero .nx.soon .nx-key::before,.hero .nx.soon .nx-key::after{content:"";position:absolute;width:12px;height:12px;border-color:#fff;border-style:solid}
+.hero .nx.soon .nx-key::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
+.hero .nx.soon .nx-key::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+.hero .nx.soon .nx-d,.hero .nx.soon .nx-v{background:linear-gradient(100deg,#bdbdbd 0%,#bdbdbd 40%,#fff 47%,#fff 53%,#bdbdbd 60%,#bdbdbd 100%);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent!important;animation:nxSheen 5.5s ease-in-out infinite}
+.hero .nx.soon .nx-v{animation-delay:.35s}
+@keyframes nxSheen{0%{background-position:100% 0}55%,100%{background-position:0 0}}
+.hero .nx.soon .nx-d{font-size:18px!important}
+.hero .nx.now .nx-key{border-color:#fff;box-shadow:0 0 34px rgba(255,255,255,.14)}
+@media (max-width:600px){.hero .nx.soon .nx-key{margin-left:-14px;padding:14px 14px 12px}}
+@media (prefers-reduced-motion:reduce){.hero .nx.soon .nx-d,.hero .nx.soon .nx-v{animation:none;color:#fff!important;background:none}.hero .nx-soonb i{animation:none}}
 </style>
 </head>
 <body class="locked">
@@ -1410,10 +1428,13 @@ section .wrap,.wrap2{padding-left:16px!important;padding-right:16px!important}
   <img src="media/hero_film.jpg" alt="">
   <div class="in wrap2">
     <h1 class="hh1"><span class="wd">Next Gathering</span></h1>
-    <div class="nx">
+    <div class="nx" id="nxNext" data-start="2026-11-18T20:00:00+09:00" data-end="2026-11-18T23:00:00+09:00">
       <p class="nx-k ja-only">次回のTHE CIGAR CODE</p><p class="nx-k en-only">Next at THE CIGAR CODE</p>
+      <div class="nx-soonb" id="nxSoon" hidden><i></i><span id="nxSoonT"></span></div>
+      <div class="nx-key">
       <p class="nx-d ja-only"><span class="nw">2026年11月18日（水）</span> <span class="nw">20:00–23:00</span></p><p class="nx-d en-only">Wednesday, 18 November 2026 · 20:00–23:00</p>
       <p class="nx-v ja-only">キャピトル東急 4F　ザ・キャピトルバー（予定）</p><p class="nx-v en-only"><span class="nw">The Capitol Bar, 4F,&nbsp;</span><span class="nw">The Capitol Hotel Tokyu (planned)</span></p>
+      </div>
       <p class="nx-n ja-only">ご参加人数により場所が変更になることがあります。</p><p class="nx-n en-only">The venue may change depending on attendance.</p>
       <a class="nx-venue" href="#lounge-capitol"><span class="ja-only">会場のご案内</span><span class="en-only">Venue details</span> →</a>
     </div>
@@ -2662,5 +2683,10 @@ window.addEventListener('resize',function(){if(V.classList.contains('on')&&cur>=
 <script>(function(){var B=document.querySelectorAll('#dv-sizes .size');if(!B.length)return;var maxL=194;
 function f(){B.forEach(function(d){var sb=d.querySelector('.stickbox'),st=d.querySelector('.stick');var W=sb.clientWidth;if(!W)return;var L=+d.dataset.l,R=+d.dataset.r;st.style.setProperty('--w',(L/maxL*100).toFixed(1)+'%');st.style.setProperty('--h',Math.round(R/64*25.4*W/maxL)+'px')})}
 f();window.addEventListener('resize',f);document.querySelectorAll('#dv-sizes details').forEach(function(d){d.addEventListener('toggle',f)});})();</script>
-</body>
+<script>(function(){var n=document.getElementById("nxNext");if(!n)return;var st=new Date(n.dataset.start),en=new Date(n.dataset.end||st.getTime()+3*36e5),b=document.getElementById("nxSoon"),t=document.getElementById("nxSoonT");
+function day(d){return new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Tokyo"}).format(d)}
+function upd(){var now=new Date(),ja=document.documentElement.lang!=="en"&&!document.body.classList.contains("en");var dd=Math.round((new Date(day(st))-new Date(day(now)))/864e5);var lab=null;
+if(now>=st&&now<en)lab=ja?"ただいま開催中":"Happening now";else if(now<st&&dd===0)lab=ja?"今夜 "+st.toLocaleTimeString("ja-JP",{timeZone:"Asia/Tokyo",hour:"2-digit",minute:"2-digit"})+" から":"Tonight";else if(now<st&&dd===1)lab=ja?"明日 開催":"Tomorrow";else if(now<st&&dd===2)lab=ja?"あと2日":"In 2 days";
+n.classList.toggle("soon",!!lab);n.classList.toggle("now",now>=st&&now<en);b.hidden=!lab;if(lab)t.textContent=lab}
+upd();setInterval(upd,6e4);document.addEventListener("click",function(e){if(e.target.closest&&e.target.closest(".lang"))setTimeout(upd,50)})})();</script></body>
 </html>
