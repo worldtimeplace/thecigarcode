@@ -1397,23 +1397,15 @@ section .wrap,.wrap2{padding-left:16px!important;padding-right:16px!important}
 .codes{margin-left:-16px!important;margin-right:-16px!important}
 }
 
-/* 開催2日前から：日時と場所に、銀の細い枠と、ゆっくり流れる光（サイトのモノクロに合わせる） */
+/* 開催2日前から：日時と場所が、ゆっくりやわらかく明滅する（枠なし） */
 .hero .nx-key{position:relative;display:inline-block}
-.hero .nx-soonb{display:inline-flex;align-items:center;gap:10px;margin:2px 0 14px;font:600 10.5px "Inter Tight","Zen Old Mincho",sans-serif;letter-spacing:.28em;color:#fff;text-transform:uppercase}
+.hero .nx-soonb{display:inline-flex;align-items:center;gap:10px;margin:2px 0 12px;font:600 10.5px "Inter Tight","Zen Old Mincho",sans-serif;letter-spacing:.28em;color:#fff;text-transform:uppercase}
 .hero .nx-soonb[hidden]{display:none}
-.hero .nx-soonb i{width:7px;height:7px;border-radius:50%;background:#fff;animation:nxDot 2.6s ease-out infinite}
-@keyframes nxDot{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}70%{box-shadow:0 0 0 11px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
-.hero .nx.soon .nx-key{padding:16px 22px 14px;margin-left:-22px;border:1px solid rgba(255,255,255,.42);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015))}
-.hero .nx.soon .nx-key::before,.hero .nx.soon .nx-key::after{content:"";position:absolute;width:12px;height:12px;border-color:#fff;border-style:solid}
-.hero .nx.soon .nx-key::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
-.hero .nx.soon .nx-key::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
-.hero .nx.soon .nx-d,.hero .nx.soon .nx-v{background:linear-gradient(100deg,#bdbdbd 0%,#bdbdbd 40%,#fff 47%,#fff 53%,#bdbdbd 60%,#bdbdbd 100%);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent!important;animation:nxSheen 5.5s ease-in-out infinite}
-.hero .nx.soon .nx-v{animation-delay:.35s}
-@keyframes nxSheen{0%{background-position:100% 0}55%,100%{background-position:0 0}}
+.hero .nx-soonb i{width:6px;height:6px;border-radius:50%;background:#fff;animation:nxBreathe 3.2s ease-in-out infinite}
+.hero .nx.soon .nx-d,.hero .nx.soon .nx-v{animation:nxBreathe 3.2s ease-in-out infinite}
 .hero .nx.soon .nx-d{font-size:18px!important}
-.hero .nx.now .nx-key{border-color:#fff;box-shadow:0 0 34px rgba(255,255,255,.14)}
-@media (max-width:600px){.hero .nx.soon .nx-key{margin-left:-14px;padding:14px 14px 12px}}
-@media (prefers-reduced-motion:reduce){.hero .nx.soon .nx-d,.hero .nx.soon .nx-v{animation:none;color:#fff!important;background:none}.hero .nx-soonb i{animation:none}}
+@keyframes nxBreathe{0%,100%{opacity:1}50%{opacity:.45}}
+@media (prefers-reduced-motion:reduce){.hero .nx.soon .nx-d,.hero .nx.soon .nx-v,.hero .nx-soonb i{animation:none}}
 </style>
 </head>
 <body class="locked">
