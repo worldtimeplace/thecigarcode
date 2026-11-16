@@ -2340,31 +2340,16 @@ section .wrap,.wrap2{padding-left:16px!important;padding-right:16px!important}
     var P=[],t0=performance.now(),last=t0,sc=Math.max(.45,Math.min(1,c.w/520));
     function add(o){o.age=0;o.ph=Math.random()*6.28;o.rot=Math.random()*6.28;o.vr=(Math.random()-.5)*.0006;o.s=SP[(Math.random()*3)|0];P.push(o)}
     for(var i=0;i<26;i++){var u=Math.random()-.5;add({x:c.x+u*c.w*1.15,y:c.y+(Math.random()-.5)*40*sc,r:(40+Math.random()*50)*sc,a:.7+Math.random()*.3,vx:u*.7,vy:-.1-Math.random()*.3,gr:(.45+Math.random()*.5)*sc,life:2400+Math.random()*1600,tb:.8})}
-    var wd=el.querySelector('.wd'),acc=0,ST=[],LF=5600,tw=0,lx=null,ly=null;
-    for(var k=0;k<3;k++)ST.push({p:[],o:(k-1)*1.1,f:k*1.9,a:[.5,.8,.42][k]});
-    function vel(x,y,t,f){var k1=.010,k2=.016,k3=.022,k4=.008,a=x*k1+t*.00032+f,b=y*k2-t*.00048+f*.7,c=x*k3-y*k4+t*.00055+f*1.3;
-      return[-k2*Math.sin(a)*Math.sin(b)-.6*k4*Math.cos(c),-(k1*Math.cos(a)*Math.cos(b)+.6*k3*Math.cos(c))]}
-    function fr(now){if(!document.body.contains(cv))return;var dt=Math.min(40,now-last);last=now;var e=now-t0,on=e>1400&&!el.classList.contains('out');
-      tw=Math.max(0,Math.min(1,tw+(on?dt/1600:-dt/900)));
-      var b=wd.getBoundingClientRect(),sx=b.left+b.width*.78,sy=b.top+b.height*.1;
-      if(ly!==null&&(sx!==lx||sy!==ly)){var ddx=sx-lx,ddy=sy-ly;for(var k=0;k<ST.length;k++)for(var j=0;j<ST[k].p.length;j++){var m=ST[k].p[j];m.x+=ddx;m.y+=ddy;m.y0+=ddy}}lx=sx;ly=sy;
-      if(on){
-        for(var k=0;k<ST.length;k++)ST[k].p.push({x:sx+ST[k].o*sc+(Math.random()-.5)*.4,y:sy,y0:sy,age:0})}
-      for(var k=0;k<ST.length;k++){var S=ST[k].p;
-        for(var j=S.length-1;j>=0;j--){var q=S[j];q.age+=dt;if(q.age>LF){S.splice(0,j+1);break}
-          var u=q.age/LF,h=Math.min(1,Math.pow(Math.max(0,(q.y0-q.y))/(150*sc+40),1.6)),v=vel(q.x,q.y,now,ST[k].f);
-          q.x+=(v[0]*h*2.4+.004*h)*dt;q.y+=(-.052*(1-u*.45)+v[1]*h*1.6)*dt}}
+    var sx=mob?W*.24:W*.5,wd=el.querySelector('.wd'),acc=0;
+    function wisp(){var b=wd.getBoundingClientRect();var ex=b.left+b.width*.78,ey=b.top+b.height*.1;
+      add({x:ex+(Math.random()-.5)*6*sc,y:ey,r:(7+Math.random()*7)*sc,a:.55+Math.random()*.3,vx:(Math.random()-.5)*.08,vy:-(.75+Math.random()*.45),gr:(.10+Math.random()*.12)*sc,life:4200+Math.random()*2200,tb:1.25,w:1})}
+    function fr(now){if(!document.body.contains(cv))return;var dt=Math.min(40,now-last);last=now;var e=now-t0;
+      if(e>1400&&!el.classList.contains('out')){acc+=dt;var iv=e<3200?70:110;while(acc>iv){acc-=iv;wisp()}}
       cx.clearRect(0,0,W,H);
       for(var i=P.length-1;i>=0;i--){var p=P[i];p.age+=dt;if(p.age>p.life){P.splice(i,1);continue}
         var q=p.age/p.life;p.ph+=dt*(p.w?.0011:.0016);p.x+=(p.vx+Math.sin(p.ph+p.y*(p.w?.018:.012))*(p.w?.55:.7)*p.tb*(p.w?(.15+q*1.3):(.3+q)))*dt*.06;p.y+=p.vy*(1-q*.5)*dt*.06;p.r+=p.gr*dt*.06;p.rot+=p.vr*dt;
         cx.globalAlpha=p.a*(q<.12?q/.12:1)*Math.pow(1-q,1.8)*(p.w?.38:.42);cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.drawImage(p.s,-p.r*1.3,-p.r*1.3,p.r*2.6,p.r*2.6);cx.restore()}
-      cx.globalAlpha=1;cx.globalCompositeOperation='lighter';cx.lineCap='round';
-      for(var k=0;k<ST.length;k++){var S=ST[k].p,n=S.length;if(n<3)continue;
-        for(var ps=0;ps<2;ps++)for(var j=1;j<n-1;j++){var A=S[j-1],B=S[j],C=S[j+1],u=B.age/LF;
-          var al=ST[k].a*tw*Math.min(1,u/.03)*Math.pow(1-u,1.5)*.42,wd2=(.55+u*2.2+u*u*10)*sc;
-          cx.strokeStyle=ps?'rgba(236,231,222,'+al.toFixed(3)+')':'rgba(236,231,222,'+(al*.13).toFixed(3)+')';cx.lineWidth=ps?wd2:wd2*4.5;
-          cx.beginPath();cx.moveTo((A.x+B.x)/2,(A.y+B.y)/2);cx.quadraticCurveTo(B.x,B.y,(B.x+C.x)/2,(B.y+C.y)/2);cx.stroke()}}
-      cx.globalCompositeOperation='source-over';requestAnimationFrame(fr)}requestAnimationFrame(fr)})();
+      cx.globalAlpha=1;requestAnimationFrame(fr)}requestAnimationFrame(fr)})();
   el.addEventListener('click',function(e){if(!el.classList.contains('gated'))end(e)});el.addEventListener('touchend',function(e){if(!el.classList.contains('gated'))end(e)},{passive:false});
   var H='825effa096531c39159f100bce91fe8af823216dcf500329d3407f15d4a3c3ab',G=document.getElementById('gate'),I=document.getElementById('gtIn');
   function hx(b){return [].map.call(new Uint8Array(b),function(x){return ('0'+x.toString(16)).slice(-2)}).join('')}
