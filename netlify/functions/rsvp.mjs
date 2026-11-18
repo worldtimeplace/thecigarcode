@@ -59,7 +59,13 @@ export default async (req) => {
     if (b.website) return json({ ok: true }); // honeypot
     if (!EVENTS.has(event) || !/^[a-z0-9-]{16,64}$/.test(id) || !name || !status)
       return json({ error: "invalid" }, 400);
-    await store.setJSON(`${event}/${id}`, { name, company, status, guests: status === "yes" ? guests : 0, at: Date.now() });
+    // safety net: if this id already holds a different person, keep the old reply under its own key
+    let key = `${event}/${id}`;
+    const prev = await store.get(key, { type: "json" });
+    if (prev && prev.name && prev.name.replace(/\s/g, "") !== name.replace(/\s/g, "")) {
+      await store.setJSON(`${event}/${id}-k${(prev.at || Date.now()).toString(36)}`, prev);
+    }
+    await store.setJSON(key, { name, company, status, guests: status === "yes" ? guests : 0, at: Date.now() });
     return json(await summary(store, event));
   }
 
