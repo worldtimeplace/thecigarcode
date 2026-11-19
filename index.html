@@ -1421,8 +1421,8 @@ section .wrap,.wrap2{padding-left:16px!important;padding-right:16px!important}
     <h1 class="hh1"><span class="wd">Next Gathering</span></h1>
     <div class="nx">
       <p class="nx-k ja-only">次回のTHE CIGAR CODE</p><p class="nx-k en-only">Next at THE CIGAR CODE</p>
-      <p class="nx-d ja-only"><span class="nw">2026年11月18日（水）</span> <span class="nw">20:00–23:00</span></p><p class="nx-d en-only">Wednesday, 18 November 2026 · 20:00–23:00</p>
-      <p class="nx-v ja-only">キャピトル東急 4F　ザ・キャピトルバー（決定）</p><p class="nx-v en-only"><span class="nw">The Capitol Bar, 4F,&nbsp;</span><span class="nw">The Capitol Hotel Tokyu (confirmed)</span></p>
+      <p class="nx-d ja-only"><span class="nw">2026年12月16日（水）</span> <span class="nw">20:00–23:00</span></p><p class="nx-d en-only">Wednesday, 16 December 2026 · 20:00–23:00</p>
+      <p class="nx-v ja-only">キャピトル東急 4F　ザ・キャピトルバー（予定）</p><p class="nx-v en-only"><span class="nw">The Capitol Bar, 4F,&nbsp;</span><span class="nw">The Capitol Hotel Tokyu (provisional)</span></p>
       <p class="nx-n ja-only">ご参加人数により場所が変更になることがあります。</p><p class="nx-n en-only">The venue may change depending on attendance.</p>
       <a class="nx-venue" href="#lounge-capitol"><span class="ja-only">会場のご案内</span><span class="en-only">Venue details</span> →</a>
     </div>
@@ -1430,7 +1430,6 @@ section .wrap,.wrap2{padding-left:16px!important;padding-right:16px!important}
     <a class="nx-count" href="#rsvp"><span class="ja-only">今月の参加予定</span><span class="en-only">Attending this month</span><b><span id="rvCount">—</span><small class="ja-only">名</small></b><em class="nx-hint"><span class="ja-only">参加者を見る</span><span class="en-only">See who's coming</span> →</em></a></div>
     <div class="nx-after"><div class="nx-ak"><span class="ja-only">今後の予定</span><span class="en-only">Upcoming</span></div>
         <ul class="nx-sch">
-          <li><span class="ja-only">2026年12月16日（水）</span><span class="en-only">Wednesday, 16 December 2026</span></li>
           <li><span class="ja-only">2027年1月20日（水）</span><span class="en-only">Wednesday, 20 January 2027</span></li>
         </ul>
         <div class="nx-an"><span class="ja-only">詳細は追ってご案内します</span><span class="en-only">Details to follow</span></div></div>
@@ -2224,8 +2223,8 @@ section .wrap,.wrap2{padding-left:16px!important;padding-right:16px!important}
 <div id="rsvpv" aria-hidden="true"><div class="rv-in">
 <div class="rv-top"><span>THE CIGAR CODE</span><button type="button" id="rvClose">CLOSE</button></div>
 <h2 class="rv-h"><span class="wd">RSVP</span></h2>
-<p class="rv-ev ja-only">2026年11月18日（水）20:00–23:00<br>キャピトル東急 4F　ザ・キャピトルバー（決定）</p>
-<p class="rv-ev en-only">Wed 18 Nov 2026, 20:00–23:00<br>The Capitol Bar, The Capitol Hotel Tokyu (confirmed)</p>
+<p class="rv-ev ja-only">2026年12月16日（水）20:00–23:00<br>キャピトル東急 4F　ザ・キャピトルバー（予定）</p>
+<p class="rv-ev en-only">Wed 16 Dec 2026, 20:00–23:00<br>The Capitol Bar, The Capitol Hotel Tokyu (provisional)</p>
 <div class="rv-me" id="rvMe" hidden><span class="rv-mk"><span class="ja-only">この端末からのご回答</span><span class="en-only">Replies sent from this device</span></span><div id="rvMine"></div></div>
 <p class="rv-mode" id="rvMode"></p>
 <form id="rvForm" autocomplete="on">
@@ -2550,7 +2549,7 @@ q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();ul.quer
 function op(){n.classList.add('on');n.setAttribute('aria-hidden','false');document.body.classList.add('mn-open');[].forEach.call(n.querySelectorAll('.mn-l a'),function(a,i){a.style.transitionDelay=(0.05*i+0.1)+'s'})}
 function cl(){n.classList.remove('on');n.setAttribute('aria-hidden','true');document.body.classList.remove('mn-open')}
 b.onclick=op;c.onclick=cl;var lg=n.querySelector('.mn-logo');if(lg)lg.addEventListener('click',function(){cl()});[].forEach.call(n.querySelectorAll('.mn-l a'),function(a){a.addEventListener('click',function(){cl()})});})();</script>
-<script>(function(){var v=document.getElementById('rsvpv');if(!v)return;var EV='2026-11-18',API='/api/rsvp',att='',K='tcc_rsvp_'+EV;
+<script>(function(){var v=document.getElementById('rsvpv');if(!v)return;var EV='2026-12-16',API='/api/rsvp',att='',K='tcc_rsvp_'+EV;
 function $(i){return document.getElementById(i)}function en(){return document.body.classList.contains('en')}
 function ld(){var o=null;try{o=JSON.parse(localStorage.getItem(K)||'null')}catch(_){}if(!o)return{list:[],cur:null};if(!o.list){o={list:o.id?[o]:[],cur:o.id||null}}return o}function sv(o){try{localStorage.setItem(K,JSON.stringify(o))}catch(_){}}
 var S=ld();function nz(t){return String(t||'').replace(/\s+/g,'')}function fnd(id){for(var i=0;i<S.list.length;i++)if(S.list[i].id===id)return S.list[i];return null}

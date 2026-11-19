@@ -1445,7 +1445,7 @@ body.en .fpage p{text-align:left}
 
   <div class="cl-p" data-p="tonight" hidden>
     <div class="ft-k">THE NEXT GATHERING</div>
-    <div class="cl-card cl-next"><b><span class="ja-only">11月18日（水）20:00–23:00</span><span class="en-only">Wed 18 Nov · 20:00–23:00</span></b><span><span class="ja-only">ザ・キャピトル バー（ザ・キャピトルホテル 東急 4F）</span><span class="en-only">The Capitol Bar, The Capitol Hotel Tokyu</span></span><a href="/#rsvp" class="cl-link"><span class="ja-only">ご出欠の回答</span><span class="en-only">RSVP</span> →</a><em id="clCount"></em></div>
+    <div class="cl-card cl-next"><b><span class="ja-only">12月16日（水）20:00–23:00</span><span class="en-only">Wed 16 Dec · 20:00–23:00</span></b><span><span class="ja-only">ザ・キャピトル バー（ザ・キャピトルホテル 東急 4F）</span><span class="en-only">The Capitol Bar, The Capitol Hotel Tokyu</span></span><a href="/#rsvp" class="cl-link"><span class="ja-only">ご出欠の回答</span><span class="en-only">RSVP</span> →</a><em id="clCount"></em></div>
     <div class="ft-k" style="margin-top:34px">TONIGHT, MEET</div>
     <p class="ja-only cl-sub">プロフィールと記録をもとに、AIが「話すと面白そうな方」をご紹介します。</p><p class="en-only cl-sub">Based on profiles and humidors, AI suggests who you might enjoy meeting.</p>
     <div id="clIntro" class="cl-intro"></div>
@@ -1535,7 +1535,7 @@ function feed(f){cur=f;[].forEach.call(Q('.cl-p[data-p=hum] .cl-seg button'),fun
 [].forEach.call(Q('.cl-p[data-p=hum] .cl-seg button'),function(b){b.onclick=function(){feed(b.getAttribute('data-f'))}});
 $('clFeed').onclick=function(e){var b=e.target.closest('.del');if(!b||!confirm(T('この記録を削除しますか？','Delete this record?')))return;api('/api/club/logs/'+b.getAttribute('data-id'),{method:'DELETE'}).then(function(){feed(cur)})};
 /* tonight */
-function count(){fetch('/api/rsvp?event=2026-11-18').then(function(r){return r.json()}).then(function(d){$('clCount').textContent=T('現在の参加予定 ','Attending: ')+d.attending+T('名','')}).catch(function(){})}
+function count(){fetch('/api/rsvp?event=2026-12-16').then(function(r){return r.json()}).then(function(d){$('clCount').textContent=T('現在の参加予定 ','Attending: ')+d.attending+T('名','')}).catch(function(){})}
 function intro(fresh){$('clIntro').innerHTML='<p class="cl-sub">'+T('AIが考えています…','Thinking…')+'</p>';api('/api/club/intro'+(fresh?'?fresh=1':'')).then(function(d){$('clIntro').innerHTML=d.picks.length?d.picks.map(function(p){return'<div class="cl-pick" data-uid="'+p.uid+'">'+avHTML(p)+'<div><b>'+esc(p.name)+'</b><small>'+esc([p.company,p.title].filter(Boolean).join(' · '))+'</small><p>'+esc(p.why)+'</p></div></div>'}).join(''):'<p class="cl-sub">'+T('ほかのメンバーが登録すると、ここにご紹介が表示されます。','Suggestions appear once other members join.')+'</p>'}).catch(function(){$('clIntro').innerHTML='<p class="cl-sub">'+T('今は表示できません。','Unavailable right now.')+'</p>'})}
 $('clIntroRe').onclick=function(){intro(1)};
 $('clIntro').onclick=function(e){var p=e.target.closest('.cl-pick');if(p)member(p.getAttribute('data-uid'))};

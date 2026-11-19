@@ -1,6 +1,6 @@
 import { getStore } from "@netlify/blobs";
 
-const EVENTS = new Set(["2026-11-18"]);
+const EVENTS = new Set(["2026-11-18", "2026-12-16"]);
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), {
     status,
